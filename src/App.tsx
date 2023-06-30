@@ -1,12 +1,11 @@
-import "./style.css";
+import "./styles/style.css";
 
-import Layout from "./Components/Layout/Layout";
-import ThemeMode from "./Components/ThemeMode/ThemeMode";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
     <Layout>
-      <ThemeMode message="there is place for theme mode" />
+
     </Layout>
   );
 }
