@@ -1,0 +1,21 @@
+.todo-section {
+  position: relative;
+  width: 600px;
+  min-height: 50vh;
+  padding: var(--spacing-xl) var(--spacing-l) var(--spacing-l);
+  background: var(--primary-color-1);
+  margin: 10rem auto;
+  box-shadow: var(--shadow-color-1);
+  border-radius: 25px;
+}
+
+.todo-section::before {
+  position: absolute;
+  top: 0;
+  margin-top: auto;
+  width: 540px;
+  content: "";
+  background: var(--primary-color-3);
+  height: 50px;
+  clip-path: ellipse(42% 25% at 50% 1%);
+}

@@ -1,0 +1,39 @@
+.TaskItem {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+p {
+  animation: intro-load 0.8s forwards;
+  padding: 1px 2px;
+  margin-left: 10px;
+  color: var(--primary-color-3);
+}
+
+p:focus {
+  background: var(--primary-color-1);
+}
+
+.buttonIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color-1);
+  color: var(--primary-color-3);
+  border: none;
+  outline: none;
+  opacity: 0.6;
+}
+
+.buttonIcon:hover {
+  opacity: 1;
+}
+
+.editIcon {
+  margin-left: auto;
+}
+

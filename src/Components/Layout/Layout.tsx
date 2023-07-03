@@ -1,13 +1,14 @@
 import { ReactNode } from "react";
 import styles from "./Layout.module.scss";
+import TodoSection from "../ToDoSection/ToDoSection";
 
-type LayouProps = {
-  children: ReactNode;
-};
+// type LayouProps = {
+//   children: ReactNode;
+// };
 
-const Layout = ({ children }: LayouProps) => (
+const Layout = () => (
   <div className={styles.layout_container}>
-    {children}
+    <TodoSection/>
   </div>
 );
 

@@ -1,0 +1,16 @@
+.iconButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+  width: 24px;
+  height: 24px;
+  background: var(--primary-color-1);
+  border: none;
+  outline: none;
+  opacity: 0.6;
+}
+
+.iconButton:focus {
+  outline: none;
+}
