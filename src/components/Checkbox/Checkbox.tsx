@@ -9,9 +9,7 @@ type CheckboxProps = {
 const Checkbox = ({ checked, onChange, className }: CheckboxProps) => {
   return (
     <div className={styles["checkbox-wrapper"]}>
-      <label
-        className={styles["checkbox-label-wrapper"]}
-        >
+      <label className={styles["checkbox-label-wrapper"]}>
         <input
           type="checkbox"
           onChange={onChange}

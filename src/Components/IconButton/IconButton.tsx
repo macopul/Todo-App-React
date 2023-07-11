@@ -1,16 +1,21 @@
-import { Children, ReactNode } from "react";
+import { ReactNode } from "react";
 import styles from "./IconButton.module.scss";
-import classNames from "classnames";
-
+import clsx from "clsx";
 
 type IconButtonProps = {
   children: ReactNode;
-  customClasses?: string;
+  className?: string;
+  onClick?: () => void;
+  id?: string;
 };
 
-const IconButton = ({ children, customClasses }: IconButtonProps) => {
+const IconButton = ({ children, className, onClick, id }: IconButtonProps) => {
   return (
-    <button className={classNames(styles.iconButton, customClasses)}>
+    <button
+      className={clsx(styles.iconButton, className)}
+      onClick={onClick}
+      id={id}
+    >
       {children}
     </button>
   );

@@ -1,44 +1,71 @@
 import styles from "./TaskItem.module.scss";
 import Checkbox from "../Checkbox/Checkbox";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 import IconButton from "../IconButton/IconButton";
-
-
-const initialTaskState: TaskItemProps = {
-  message: "first task",
-  completed: true,
-};
-
+import clsx from "clsx";
 
 type TaskItemProps = {
   message: string;
   completed: boolean;
+  messageEditable: boolean;
 };
 
-const editIconStyles = {
-  color:'red',
-  width: '10px',
-  heigth: '10px',
-}
- 
-
-
-const TaskItem = ({ message , completed = false }: TaskItemProps) => {
-  const [taskState, setTaskState] = useState(initialTaskState);
+const TaskItem = ({
+  message = "first task",
+  completed = false,
+  messageEditable = false,
+}: TaskItemProps) => {
+  const [title, setTitle] = useState(message);
   const [checked, setChecked] = useState(completed);
+  const [isEditable, setIsEditbale] = useState(messageEditable);
+  const ref = useRef<HTMLInputElement>(null);
 
-  console.log(taskState);
+  useEffect(() => {
+    if (ref?.current && isEditable) {
+      ref.current.focus();
+    }
+  }, [isEditable]);
 
   return (
     <div className={styles.TaskItem}>
       <Checkbox checked={checked} onChange={() => setChecked(!checked)} />
-      <p>{taskState.message}</p>
-      <IconButton customClasses={styles.editIcon}>
+      <input
+        ref={ref}
+        className={clsx(styles.taskInput, {
+          [styles.taskInputEditable]: isEditable && !checked,
+          [styles.taskInputCompleted]: checked,
+        })}
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        readOnly={checked}
+        onClick={() => {
+          setIsEditbale(true);
+        }}
+        onBlur={(e) => {
+          if (e.relatedTarget?.id === "editButton") {
+            return;
+          } else {
+            setIsEditbale(false);
+          }
+        }}
+      />
+      <IconButton
+        className={styles.editIcon}
+        onClick={() => {
+          setIsEditbale(!isEditable);
+        }}
+        id="editButton"
+      >
         <AiFillEdit className={styles.buttonIcon} />
       </IconButton>
-      <IconButton>
+      <IconButton
+        onClick={() => {
+          setIsEditbale(false);
+        }}
+      >
         <MdDelete className={styles.buttonIcon} />
       </IconButton>
     </div>
