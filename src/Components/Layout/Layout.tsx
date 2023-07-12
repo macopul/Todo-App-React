@@ -1,13 +1,9 @@
 import styles from "./Layout.module.scss";
 import TodoSection from "../ToDoSection/ToDoSection";
 
-// type LayouProps = {
-//   children: ReactNode;
-// };
-
 const Layout = () => (
-  <div className={styles.layout_container}>
-    <TodoSection/>
+  <div className={styles.LayoutContainer}>
+    <TodoSection />
   </div>
 );
 

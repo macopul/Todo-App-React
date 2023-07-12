@@ -54,18 +54,12 @@ const TaskItem = ({
       />
       <IconButton
         className={styles.editIcon}
-        onClick={() => {
-          setIsEditbale(!isEditable);
-        }}
+        onClick={() => setIsEditbale(!isEditable)}
         id="editButton"
       >
         <AiFillEdit className={styles.buttonIcon} />
       </IconButton>
-      <IconButton
-        onClick={() => {
-          setIsEditbale(false);
-        }}
-      >
+      <IconButton onClick={() => setIsEditbale(false)}>
         <MdDelete className={styles.buttonIcon} />
       </IconButton>
     </div>

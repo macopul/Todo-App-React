@@ -3,7 +3,7 @@ import styles from "./TodoSection.module.scss";
 
 const TodoSection = () => {
   return (
-    <div className={styles["todo-section"]}>
+    <div className={styles.TodoSection}>
       <TaskItem
         message={"first task"}
         completed={false}

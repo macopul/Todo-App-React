@@ -6,15 +6,15 @@ type CheckboxProps = {
   className?: string;
 };
 
-const Checkbox = ({ checked, onChange, className }: CheckboxProps) => {
+const Checkbox = ({ checked, onChange}: CheckboxProps) => {
   return (
-    <div className={styles["checkbox-wrapper"]}>
-      <label className={styles["checkbox-label-wrapper"]}>
+    <div className={styles.CheckboxWrapper}>
+      <label className={styles.checkboxLabelWrapper}>
         <input
           type="checkbox"
           onChange={onChange}
           checked={checked}
-          className={styles["task-item-checkbox"]}
+          className={styles.taskItemCheckbox}
         ></input>
         <div className={styles.checkmark}></div>
       </label>

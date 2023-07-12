@@ -1,17 +1,16 @@
-
-.checkbox-wrapper {
+.CheckboxWrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.checkbox-label-wrapper {
+.checkboxLabelWrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.task-item-checkbox:hover {
+.taskItemCheckbox:hover {
   cursor: pointer;
 }
 
@@ -22,7 +21,6 @@ input[type="checkbox"] {
   width: 20px;
   height: 20px;
   opacity: 0;
-  // display: none;
 }
 
 .checkmark {
@@ -45,5 +43,5 @@ input[type="checkbox"]:checked + .checkmark {
 }
 
 input[type="checkbox"]:checked + .checkmark:hover {
-   border: 2px solid var(--primary-color-3);
-} 
+  border: 2px solid var(--primary-color-3);
+}

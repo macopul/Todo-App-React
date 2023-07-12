@@ -1,4 +1,4 @@
-.todo-section {
+.TodoSection {
   position: relative;
   width: 600px;
   min-height: 50vh;
@@ -9,7 +9,7 @@
   border-radius: 25px;
 }
 
-.todo-section::before {
+.TodoSection::before {
   position: absolute;
   top: 0;
   margin-top: auto;
