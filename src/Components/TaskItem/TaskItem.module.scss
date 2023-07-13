@@ -1,4 +1,4 @@
-.TaskItem {
+.TaskItemComponent {
   width: 100%;
   height: fit-content;
   display: flex;
@@ -24,6 +24,11 @@
 
 .editIcon {
   margin-left: auto;
+}
+
+.editIconIsActive {
+  outline: 2px solid black;
+  opacity: 1;
 }
 
 .taskInput {

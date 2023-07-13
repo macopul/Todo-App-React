@@ -1,10 +1,10 @@
-import styles from "./TaskItem.module.scss";
 import Checkbox from "../Checkbox/Checkbox";
 import { useEffect, useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 import IconButton from "../IconButton/IconButton";
 import clsx from "clsx";
+import styles from "./TaskItem.module.scss";
 
 type TaskItemProps = {
   message: string;
@@ -28,8 +28,18 @@ const TaskItem = ({
     }
   }, [isEditable]);
 
+  const handleOnInputBlur = (
+    e: React.FocusEvent<HTMLInputElement, Element>
+  ) => {
+    if (e.relatedTarget?.id === "editButton") {
+      return;
+    } else {
+      setIsEditbale(false);
+    }
+  };
+
   return (
-    <div className={styles.TaskItem}>
+    <div className={styles.TaskItemComponent}>
       <Checkbox checked={checked} onChange={() => setChecked(!checked)} />
       <input
         ref={ref}
@@ -44,22 +54,18 @@ const TaskItem = ({
         onClick={() => {
           setIsEditbale(true);
         }}
-        onBlur={(e) => {
-          if (e.relatedTarget?.id === "editButton") {
-            return;
-          } else {
-            setIsEditbale(false);
-          }
-        }}
+        onBlur={handleOnInputBlur}
       />
       <IconButton
-        className={styles.editIcon}
+        customClass={clsx(styles.editIcon, {
+          [styles.editIconIsActive]: isEditable && !checked,
+        })}
         onClick={() => setIsEditbale(!isEditable)}
         id="editButton"
       >
         <AiFillEdit className={styles.buttonIcon} />
       </IconButton>
-      <IconButton onClick={() => setIsEditbale(false)}>
+      <IconButton>
         <MdDelete className={styles.buttonIcon} />
       </IconButton>
     </div>

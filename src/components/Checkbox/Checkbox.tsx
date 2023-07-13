@@ -8,7 +8,7 @@ type CheckboxProps = {
 
 const Checkbox = ({ checked, onChange}: CheckboxProps) => {
   return (
-    <div className={styles.CheckboxWrapper}>
+    <div className={styles.CheckboxComponent}>
       <label className={styles.checkboxLabelWrapper}>
         <input
           type="checkbox"

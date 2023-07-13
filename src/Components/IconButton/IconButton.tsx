@@ -4,15 +4,15 @@ import clsx from "clsx";
 
 type IconButtonProps = {
   children: ReactNode;
-  className?: string;
+  customClass?: string;
   onClick?: () => void;
   id?: string;
 };
 
-const IconButton = ({ children, className, onClick, id }: IconButtonProps) => {
+const IconButton = ({ children, customClass, onClick, id }: IconButtonProps) => {
   return (
     <button
-      className={clsx(styles.iconButton, className)}
+      className={clsx(styles.iconButton, customClass)}
       onClick={onClick}
       id={id}
     >
