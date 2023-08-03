@@ -9,10 +9,15 @@ type IconButtonProps = {
   id?: string;
 };
 
-const IconButton = ({ children, customClass, onClick, id }: IconButtonProps) => {
+const IconButton = ({
+  children,
+  customClass,
+  onClick,
+  id,
+}: IconButtonProps) => {
   return (
     <button
-      className={clsx(styles.iconButton, customClass)}
+      className={clsx(styles.IconButtonComponent, customClass)}
       onClick={onClick}
       id={id}
     >
