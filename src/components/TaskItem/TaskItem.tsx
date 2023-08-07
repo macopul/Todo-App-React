@@ -1,9 +1,10 @@
-import Checkbox from "../Checkbox/Checkbox";
-import { useEffect, useRef, useState } from "react";
-import { MdDelete } from "react-icons/md";
-import { AiFillEdit } from "react-icons/ai";
-import IconButton from "../IconButton/IconButton";
 import clsx from "clsx";
+import { useEffect, useRef, useState } from "react";
+import { AiFillEdit } from "react-icons/ai";
+import { MdDelete } from "react-icons/md";
+import useClickOutside from "../../hooks/useClickOutside";
+import Checkbox from "../Checkbox/Checkbox";
+import IconButton from "../IconButton/IconButton";
 import styles from "./TaskItem.module.scss";
 
 type TaskItemProps = {
@@ -28,15 +29,8 @@ const TaskItem = ({
     }
   }, [isEditable]);
 
-  const handleOnInputBlur = (
-    e: React.FocusEvent<HTMLInputElement, Element>
-  ) => {
-    if (e.relatedTarget?.id === "editButton") {
-      return;
-    } else {
-      setIsEditbale(false);
-    }
-  };
+  useClickOutside(() => setIsEditbale(false), ref);
+
 
   return (
     <div className={styles.TaskItemComponent}>
@@ -54,7 +48,6 @@ const TaskItem = ({
         onClick={() => {
           setIsEditbale(true);
         }}
-        onBlur={handleOnInputBlur}
       />
       <IconButton
         customClass={clsx(styles.editIcon, {
