@@ -1,12 +1,10 @@
-import { ReactNode } from 'react';
-import styles from './Layout.module.scss';
+import styles from "./Layout.module.scss";
+import TodoSection from "../ToDoSection/ToDoSection";
 
-type LayouProps = {
-  children: ReactNode;
-};
-
-const Layout = ({ children }: LayouProps) => (
-  <div className={styles.layout_container}>{children}</div>
+const Layout = () => (
+  <div className={styles.LayoutComponent}>
+    <TodoSection />
+  </div>
 );
 
 export default Layout;

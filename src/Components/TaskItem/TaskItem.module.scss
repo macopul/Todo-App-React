@@ -1,0 +1,51 @@
+.TaskItemComponent {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.buttonIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color-1);
+  color: var(--primary-color-3);
+  border: none;
+  outline: none;
+  opacity: 0.6;
+}
+
+.buttonIcon:hover {
+  opacity: 1;
+}
+
+.editIcon {
+  margin-left: auto;
+}
+
+.editIconIsActive {
+  outline: 2px solid var(--secondary-color-2);
+  opacity: 1;
+}
+
+.taskInput {
+  padding: 0 5px;
+  margin-left: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.taskInputEditable {
+  background: var(--primary-color-2);
+  outline: solid 1px var(--primary-color-3);
+  border-radius: 8px;
+}
+
+.taskInputCompleted {
+  text-decoration: line-through;
+  opacity: 0.5;
+}

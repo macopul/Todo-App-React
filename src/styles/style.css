@@ -1,5 +1,4 @@
 @import './reset.scss';
-@import './variables.scss';
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -15,6 +14,65 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /*** VARIABLES ***/
+
+ /* colors */
+  --primary-color-1: #f9f7f3;
+  --primary-color-2: #d1d6dc;
+  --primary-color-3: #3d3b30;
+  --primary-color-4: #d8e2dc;
+  --secondary-color-1: #d51d1d;
+  --secondary-color-2: #7c7c7c;
+  --secondary-color-3: #0f0f0f;
+  --shadow-color-1: #1c1421;
+
+  /* container */
+  --todo-header-logo-height: 15px;
+
+  /* title */
+  --todo-title-height: 30px;
+
+  /* shadows */
+  --todo-app-shadow: 15px 11px 53px #0a0a0a33;
+  --title-drop-shadow: drop-shadow(0 0 25px rgba(1, 139, 86, 0.62));
+
+  /* gradients */
+  --green-blue-linear-gradient: linear-gradient(45deg, #05ff67, #2965d9);
+  --green-purple-linear-gradient: linear-gradient(to left, #2ebf91, #8360c3);
+
+  /* checkbox */
+  --todo-checkbox-active: #ff4545;
+
+  /* task counter */
+  --todo-task-counter-color: var(--color-light-grey);
+  --todo-task-counter-background-color: var(--color-dark-grey);
+
+  /* ToDoItem */
+  --todoItem-height: 50px;
+
+  /* accordion */
+  --accordion-min-height: 30px;
+
+  /* spacings */
+  --spacing-xs: 4px;
+  --spacing-s: 8px;
+  --spacing-sm: 12px;
+  --spacing-m: 16px;
+  --spacing-l: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 40px;
+}
+
+body.theme-dark {
+  --primary-color-1: #615f5d;
+  --primary-color-2: #807e80;
+  --primary-color-3: #cedad2;
+  --primary-color-4: #222530;
+  --secondary-color-1: #a41515;
+  --secondary-color-3: #d4cbcb;
+  --secondary-color-2: #b6b6b6;
+  --shadow-color-1: #8c8e91;
 }
 
 a {
@@ -22,6 +80,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -50,9 +109,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -70,3 +131,5 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
