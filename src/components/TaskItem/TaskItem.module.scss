@@ -5,6 +5,28 @@
   align-items: center;
 }
 
+.editButton {
+  margin-left: auto;
+  opacity: 0.5;
+}
+
+.editButton:hover {
+  opacity: 1;
+}
+
+.editButtonIsActive {
+  outline: 2px solid var(--secondary-color-2);
+  opacity: 1;
+}
+
+.deleteButton {
+  opacity: 0.5;
+}
+
+.deleteButton:hover {
+  opacity: 1;
+}
+
 .buttonIcon {
   display: flex;
   justify-content: center;
@@ -15,20 +37,7 @@
   color: var(--primary-color-3);
   border: none;
   outline: none;
-  opacity: 0.6;
-}
-
-.buttonIcon:hover {
-  opacity: 1;
-}
-
-.editIcon {
-  margin-left: auto;
-}
-
-.editIconIsActive {
-  outline: 2px solid var(--secondary-color-2);
-  opacity: 1;
+  pointer-events: none;
 }
 
 .taskInput {
