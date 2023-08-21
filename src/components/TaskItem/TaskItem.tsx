@@ -5,6 +5,7 @@ import { AiFillEdit } from 'react-icons/ai';
 import IconButton from '../IconButton/IconButton';
 import clsx from 'clsx';
 import styles from './TaskItem.module.scss';
+import UseClickOutside from '../../hooks/useClickOutside';
 
 type TaskItemProps = {
   message: string;
@@ -22,19 +23,13 @@ const TaskItem = ({
   const [isEditable, setIsEditbale] = useState(messageEditable);
   const ref = useRef<HTMLInputElement>(null);
 
+  UseClickOutside(ref, () => setIsEditbale(false), 'ignoreClickOutside');
+
   useEffect(() => {
     if (ref?.current && isEditable) {
       ref.current.focus();
     }
   }, [isEditable]);
-
-  const handleOnInputBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-    if (e.relatedTarget?.id === 'editButton') {
-      return;
-    } else {
-      setIsEditbale(false);
-    }
-  };
 
   return (
     <div className={styles.TaskItemComponent}>
@@ -52,18 +47,20 @@ const TaskItem = ({
         onClick={() => {
           setIsEditbale(true);
         }}
-        onBlur={handleOnInputBlur}
       />
       <IconButton
-        customClass={clsx(styles.editIcon, {
-          [styles.editIconIsActive]: isEditable && !checked,
+        data-ignore-click-outside
+        classname={clsx(styles.editButton, {
+          [styles.editButtonIsActive]: isEditable && !checked,
         })}
-        onClick={() => setIsEditbale(!isEditable)}
+        onClick={() => {
+          setIsEditbale(!isEditable);
+        }}
         id="editButton"
       >
         <AiFillEdit className={styles.buttonIcon} />
       </IconButton>
-      <IconButton>
+      <IconButton classname={clsx(styles.deleteButton)}>
         <MdDelete className={styles.buttonIcon} />
       </IconButton>
     </div>
