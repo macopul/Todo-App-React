@@ -10,19 +10,14 @@ import UseClickOutside from '../../hooks/useClickOutside';
 type TaskItemProps = {
   message: string;
   completed: boolean;
-  messageEditable: boolean;
+  id: string;
 };
 
-const TaskItem = ({
-  message = 'first task',
-  completed = false,
-  messageEditable = false,
-}: TaskItemProps) => {
+const TaskItem = ({ message = 'first task', completed = false, id }: TaskItemProps) => {
   const [title, setTitle] = useState(message);
   const [checked, setChecked] = useState(completed);
-  const [isEditable, setIsEditbale] = useState(messageEditable);
+  const [isEditable, setIsEditbale] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
-
   UseClickOutside(ref, () => setIsEditbale(false), 'ignoreClickOutside');
 
   useEffect(() => {
@@ -33,9 +28,10 @@ const TaskItem = ({
 
   return (
     <div className={styles.TaskItemComponent}>
-      <Checkbox checked={checked} onChange={() => setChecked(!checked)} />
+      <Checkbox id={id} checked={checked} onChange={() => setChecked(!checked)} />
       <input
         ref={ref}
+        id={id}
         className={clsx(styles.taskInput, {
           [styles.taskInputEditable]: isEditable && !checked,
           [styles.taskInputCompleted]: checked,
@@ -50,13 +46,13 @@ const TaskItem = ({
       />
       <IconButton
         data-ignore-click-outside
+        id={id}
         classname={clsx(styles.editButton, {
           [styles.editButtonIsActive]: isEditable && !checked,
         })}
         onClick={() => {
           setIsEditbale(!isEditable);
         }}
-        id="editButton"
       >
         <AiFillEdit className={styles.buttonIcon} />
       </IconButton>
