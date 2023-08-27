@@ -28,7 +28,7 @@ const TaskItem = ({ message = 'first task', completed = false, id }: TaskItemPro
 
   return (
     <div className={styles.TaskItemComponent}>
-      <Checkbox id={id} checked={checked} onChange={() => setChecked(!checked)} />
+      <Checkbox checked={checked} onChange={() => setChecked(!checked)} />
       <input
         ref={ref}
         id={id}
