@@ -1,15 +1,15 @@
 import { RefObject, useEffect } from 'react';
 
-const UseClickOutside = function (
+export function useClickOutside(
   ref: RefObject<HTMLElement>,
   onClickOutside: () => void,
-  ignoreDataSetProperty: string,
+  ignoreDataSetProperty?: string,
 ) {
   const handleClickOutside = (event: any) => {
     if (
       ref.current &&
-      (!event.target.dataset[ignoreDataSetProperty] || event.target.id !== ref.current.id) &&
-      !ref.current?.contains(event.target)
+      !ref.current?.contains(event.target) &&
+      event.target.dataset.ignoreClickOutside !== ignoreDataSetProperty
     ) {
       onClickOutside();
     }
@@ -21,6 +21,4 @@ const UseClickOutside = function (
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [handleClickOutside]);
-};
-
-export default UseClickOutside;
+}

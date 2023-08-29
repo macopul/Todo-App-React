@@ -1,19 +1,20 @@
-import Checkbox from '../Checkbox/Checkbox';
-import { useEffect, useRef, useState } from 'react';
-import { MdDelete } from 'react-icons/md';
-import { AiFillEdit } from 'react-icons/ai';
-import IconButton from '../IconButton/IconButton';
 import clsx from 'clsx';
-import styles from './TaskItem.module.scss';
-import UseClickOutside from '../../hooks/useClickOutside';
+import { useEffect, useRef, useState } from 'react';
+import { AiFillEdit } from 'react-icons/ai';
+import { MdDelete } from 'react-icons/md';
+import { useClickOutside } from '../../hooks/useClickOutside';
 import { TaskItemType } from '../../types/TaskItemType';
+import { Checkbox } from '../Checkbox/Checkbox';
+import IconButton from '../IconButton/IconButton';
+import styles from './TaskItem.module.scss';
 
 const TaskItem = ({ title, checked, id }: TaskItemType) => {
   const [taskTitle, setTitle] = useState(title);
   const [taskChecked, setChecked] = useState(checked);
   const [isEditable, setIsEditbale] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
-  UseClickOutside(ref, () => setIsEditbale(false), 'ignoreClickOutside');
+  const ingnoreClickOutsideId = `ignoreClickOutside${id}`
+  useClickOutside(ref, () => setIsEditbale(false), ingnoreClickOutsideId);
 
   useEffect(() => {
     if (ref?.current && isEditable) {
@@ -26,7 +27,7 @@ const TaskItem = ({ title, checked, id }: TaskItemType) => {
       <Checkbox checked={taskChecked} onChange={() => setChecked(!taskChecked)} />
       <input
         ref={ref}
-        id={id}
+        // id={id}
         className={clsx(styles.taskInput, {
           [styles.taskInputEditable]: isEditable && !taskChecked,
           [styles.taskInputCompleted]: taskChecked,
@@ -40,8 +41,8 @@ const TaskItem = ({ title, checked, id }: TaskItemType) => {
         }}
       />
       <IconButton
-        data-ignore-click-outside
-        id={id}
+        data-ignore-click-outside={ingnoreClickOutsideId}
+        // id={id}
         classname={clsx(styles.editButton, {
           [styles.editButtonIsActive]: isEditable && !taskChecked,
         })}

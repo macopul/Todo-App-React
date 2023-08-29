@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TaskItemType } from '../../types/TaskItemType';
+import styles from './AddToDoSection.module.scss';
 
 type AddToDoProps = {
   message: string;
@@ -13,8 +14,8 @@ const AddToDoSection = ({ message, addTaskToList }: AddToDoProps) => {
     addTaskToList({ title: taskTitle, id: Math.random().toString(), checked: false });
 
   return (
-    <div className="to-do-action-container">
-      <input type="text" value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
+    <div className={styles.AddToDoSection}>
+      <input placeholder='Add new task' type="text" value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
       <button onClick={handleAddTaskButtonClick}>Add New Task</button>
     </div>
   );

@@ -6,7 +6,7 @@ type CheckboxProps = {
   className?: string;
 };
 
-const Checkbox = ({ checked, onChange }: CheckboxProps) => {
+export const Checkbox = ({ checked, onChange }: CheckboxProps) => {
   return (
     <div className={styles.CheckboxComponent}>
       <label className={styles.checkboxLabelWrapper}>
@@ -22,4 +22,3 @@ const Checkbox = ({ checked, onChange }: CheckboxProps) => {
   );
 };
 
-export default Checkbox;
