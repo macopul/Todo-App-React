@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
+import { TaskItemType } from '../types/TaskItemType';
 
-export type TaskItemType = {
-  title: string;
-  checked?: boolean;
-};
 
 export const useTaskStorage = () => {
   const [taskList, setTaskList] = useState<TaskItemType[]>(
@@ -12,10 +9,16 @@ export const useTaskStorage = () => {
 
   useEffect(() => {
     localStorage.setItem('tasks-list', JSON.stringify(taskList));
-  }, [taskList]);
+  }, []);
 
-  const addTaskToList = ({ checked = false, ...rest }: TaskItemType) => {
-    setTaskList([...taskList, { ...rest, checked }]);
+  const addTaskToList = ({ title, id, checked }: TaskItemType) => {
+    localStorage.setItem('tasks-list', JSON.stringify([...taskList, { title, id, checked }]));
+    const currentTasksList = getTaskList();
+    setTaskList(currentTasksList);
+  };
+
+  const getTaskList = () => {
+    return JSON.parse(localStorage.getItem('tasks-list'));
   };
 
   return { addTaskToList, taskList };

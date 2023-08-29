@@ -1,9 +1,5 @@
 import { useState } from 'react';
-
-export type TaskItemType = {
-  title: string;
-  checked?: boolean;
-};
+import { TaskItemType } from '../../types/TaskItemType';
 
 type AddToDoProps = {
   message: string;
@@ -13,7 +9,8 @@ type AddToDoProps = {
 const AddToDoSection = ({ message, addTaskToList }: AddToDoProps) => {
   const [taskTitle, setTaskTitle] = useState(message);
 
-  const handleAddTaskButtonClick = () => addTaskToList({ title: taskTitle, checked: false });
+  const handleAddTaskButtonClick = () =>
+    addTaskToList({ title: taskTitle, id: Math.random().toString(), checked: false });
 
   return (
     <div className="to-do-action-container">

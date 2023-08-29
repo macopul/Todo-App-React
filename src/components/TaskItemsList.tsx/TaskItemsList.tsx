@@ -1,15 +1,16 @@
 import TaskItem from '../TaskItem/TaskItem';
-import { TaskItemType } from '../AddToDoSection/AddToDoSection';
+import { TaskItemType } from '../../types/TaskItemType';
 
 type TasksItemListType = {
   taskList: TaskItemType[];
 };
 
 const TasksItemList = ({ taskList }: TasksItemListType) => {
+  console.log('taskListWas Rendered');
   return (
     <>
       {taskList.map((task) => (
-        <TaskItem message={task.title} completed={false} id={Math.random().toString()} />
+        <TaskItem key={task.id} title={task.title} checked={task.checked} id={task.id} />
       ))}
     </>
   );

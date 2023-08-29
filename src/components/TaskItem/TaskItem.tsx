@@ -6,16 +6,11 @@ import IconButton from '../IconButton/IconButton';
 import clsx from 'clsx';
 import styles from './TaskItem.module.scss';
 import UseClickOutside from '../../hooks/useClickOutside';
+import { TaskItemType } from '../../types/TaskItemType';
 
-type TaskItemProps = {
-  message: string;
-  completed: boolean;
-  id: string;
-};
-
-const TaskItem = ({ message = 'first task', completed = false, id }: TaskItemProps) => {
-  const [title, setTitle] = useState(message);
-  const [checked, setChecked] = useState(completed);
+const TaskItem = ({ title, checked, id }: TaskItemType) => {
+  const [taskTitle, setTitle] = useState(title);
+  const [taskChecked, setChecked] = useState(checked);
   const [isEditable, setIsEditbale] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
   UseClickOutside(ref, () => setIsEditbale(false), 'ignoreClickOutside');
@@ -28,18 +23,18 @@ const TaskItem = ({ message = 'first task', completed = false, id }: TaskItemPro
 
   return (
     <div className={styles.TaskItemComponent}>
-      <Checkbox checked={checked} onChange={() => setChecked(!checked)} />
+      <Checkbox checked={taskChecked} onChange={() => setChecked(!taskChecked)} />
       <input
         ref={ref}
         id={id}
         className={clsx(styles.taskInput, {
-          [styles.taskInputEditable]: isEditable && !checked,
-          [styles.taskInputCompleted]: checked,
+          [styles.taskInputEditable]: isEditable && !taskChecked,
+          [styles.taskInputCompleted]: taskChecked,
         })}
         type="text"
-        value={title}
+        value={taskTitle}
         onChange={(e) => setTitle(e.target.value)}
-        readOnly={checked}
+        readOnly={taskChecked}
         onClick={() => {
           setIsEditbale(true);
         }}
@@ -48,7 +43,7 @@ const TaskItem = ({ message = 'first task', completed = false, id }: TaskItemPro
         data-ignore-click-outside
         id={id}
         classname={clsx(styles.editButton, {
-          [styles.editButtonIsActive]: isEditable && !checked,
+          [styles.editButtonIsActive]: isEditable && !taskChecked,
         })}
         onClick={() => {
           setIsEditbale(!isEditable);
