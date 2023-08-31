@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { TaskItemType } from '../types/TaskItemType';
-
 
 export const useTaskStorage = () => {
   const [taskList, setTaskList] = useState<TaskItemType[]>(
     JSON.parse(localStorage.getItem('tasks-list')) || [],
   );
-
-  useEffect(() => {
-    localStorage.setItem('tasks-list', JSON.stringify(taskList));
-  }, []);
 
   const addTaskToList = ({ title, id, checked }: TaskItemType) => {
     localStorage.setItem('tasks-list', JSON.stringify([...taskList, { title, id, checked }]));
