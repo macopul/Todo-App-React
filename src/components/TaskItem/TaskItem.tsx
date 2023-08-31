@@ -5,48 +5,48 @@ import { AiFillEdit } from 'react-icons/ai';
 import IconButton from '../IconButton/IconButton';
 import clsx from 'clsx';
 import styles from './TaskItem.module.scss';
-import UseClickOutside from '../../hooks/useClickOutside';
+import useClickOutside from '../../hooks/useClickOutside';
 import { TaskItemType } from '../../types/TaskItemType';
 
 const TaskItem = ({ title, checked, id }: TaskItemType) => {
-  const [taskTitle, setTitle] = useState(title);
-  const [taskChecked, setChecked] = useState(checked);
-  const [isEditable, setIsEditbale] = useState(false);
+  const [taskTitle, setTaskTitle] = useState(title);
+  const [isTaskChecked, setIsTaskChecked] = useState(checked);
+  const [isTaskEditable, setIsTaskEditbale] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
-  UseClickOutside(ref, () => setIsEditbale(false), 'ignoreClickOutside');
+  useClickOutside(ref, () => setIsTaskEditbale(false), `ignoreClickOutside${id}`);
 
   useEffect(() => {
-    if (ref?.current && isEditable) {
+    if (ref?.current && isTaskEditable) {
       ref.current.focus();
     }
-  }, [isEditable]);
+  }, [isTaskEditable]);
 
   return (
     <div className={styles.TaskItemComponent}>
-      <Checkbox checked={taskChecked} onChange={() => setChecked(!taskChecked)} />
+      <Checkbox checked={isTaskChecked} onChange={() => setIsTaskChecked(!isTaskChecked)} />
       <input
         ref={ref}
         id={id}
         className={clsx(styles.taskInput, {
-          [styles.taskInputEditable]: isEditable && !taskChecked,
-          [styles.taskInputCompleted]: taskChecked,
+          [styles.taskEditable]: isTaskEditable && !isTaskChecked,
+          [styles.taskChecked]: isTaskChecked,
         })}
         type="text"
         value={taskTitle}
-        onChange={(e) => setTitle(e.target.value)}
-        readOnly={taskChecked}
+        onChange={(e) => setTaskTitle(e.target.value)}
+        readOnly={isTaskChecked}
         onClick={() => {
-          setIsEditbale(true);
+          setIsTaskEditbale(true);
         }}
       />
       <IconButton
-        data-ignore-click-outside
+        data-ignore-click-outside={`ignoreClickOutside${id}`}
         id={id}
         classname={clsx(styles.editButton, {
-          [styles.editButtonIsActive]: isEditable && !taskChecked,
+          [styles.editButtonActive]: isTaskEditable && !isTaskChecked,
         })}
         onClick={() => {
-          setIsEditbale(!isEditable);
+          setIsTaskEditbale(!isTaskEditable);
         }}
       >
         <AiFillEdit className={styles.buttonIcon} />

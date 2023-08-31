@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from 'react';
 
-const UseClickOutside = function (
+const useClickOutside = function (
   ref: RefObject<HTMLElement>,
   onClickOutside: () => void,
   ignoreDataSetProperty: string,
@@ -8,7 +8,7 @@ const UseClickOutside = function (
   const handleClickOutside = (event: any) => {
     if (
       ref.current &&
-      (!event.target.dataset[ignoreDataSetProperty] || event.target.id !== ref.current.id) &&
+      !(event.target.dataset.ignoreClickOutside === ignoreDataSetProperty) &&
       !ref.current?.contains(event.target)
     ) {
       onClickOutside();
@@ -23,4 +23,4 @@ const UseClickOutside = function (
   }, [handleClickOutside]);
 };
 
-export default UseClickOutside;
+export default useClickOutside;
