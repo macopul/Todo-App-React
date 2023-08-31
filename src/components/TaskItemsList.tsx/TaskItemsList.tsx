@@ -6,7 +6,6 @@ type TasksItemListType = {
 };
 
 const TasksItemList = ({ taskList }: TasksItemListType) => {
-  console.log('taskListWas Rendered');
   return (
     <>
       {taskList.map((task) => (
