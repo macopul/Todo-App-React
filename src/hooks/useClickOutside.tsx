@@ -8,7 +8,7 @@ const useClickOutside = function (
   const handleClickOutside = (event: any) => {
     if (
       ref.current &&
-      !(event.target.dataset.ignoreClickOutside === ignoreDataSetProperty) &&
+      event.target.dataset.ignoreClickOutside !== ignoreDataSetProperty &&
       !ref.current?.contains(event.target)
     ) {
       onClickOutside();
