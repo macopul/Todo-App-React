@@ -3,6 +3,7 @@
   height: fit-content;
   display: flex;
   align-items: center;
+  padding-bottom: 5px;
 }
 
 .editButton {
@@ -14,7 +15,7 @@
   opacity: 1;
 }
 
-.editButtonIsActive {
+.editButtonActive {
   outline: 2px solid var(--secondary-color-2);
   opacity: 1;
 }
@@ -48,13 +49,13 @@
   outline: none;
 }
 
-.taskInputEditable {
+.taskEditable {
   background: var(--primary-color-2);
   outline: solid 1px var(--primary-color-3);
   border-radius: 8px;
 }
 
-.taskInputCompleted {
+.taskChecked {
   text-decoration: line-through;
   opacity: 0.5;
 }
