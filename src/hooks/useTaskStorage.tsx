@@ -1,19 +1,13 @@
-import { useState } from 'react';
 import { TaskItemType } from '../types/TaskItemType';
+import { useTaskStoreContext } from './useTaskStoreContext';
 
 export const useTaskStorage = () => {
-  const [taskList, setTaskList] = useState<TaskItemType[]>(
-    JSON.parse(localStorage.getItem('tasks-list')) || [],
-  );
+  const { localStorageTaskStore, setTaskList, taskList } = useTaskStoreContext();
 
   const addTaskToList = ({ title, id, checked }: TaskItemType) => {
-    localStorage.setItem('tasks-list', JSON.stringify([...taskList, { title, id, checked }]));
-    const currentTasksList = getTaskList();
+    localStorageTaskStore.set([...taskList, { title, id, checked }]);
+    const currentTasksList = localStorageTaskStore.get();
     setTaskList(currentTasksList);
-  };
-
-  const getTaskList = () => {
-    return JSON.parse(localStorage.getItem('tasks-list'));
   };
 
   return { addTaskToList, taskList };
