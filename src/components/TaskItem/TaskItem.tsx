@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import styles from './TaskItem.module.scss';
 import useClickOutside from '../../hooks/useClickOutside';
 import { TaskItemType } from '../../types/TaskItemType';
+import { useTaskStorage } from '../../hooks/useTaskStorage';
 
 const TaskItem = ({ title, checked, id }: TaskItemType) => {
   const [taskTitle, setTaskTitle] = useState(title);
@@ -14,6 +15,13 @@ const TaskItem = ({ title, checked, id }: TaskItemType) => {
   const [isTaskEditable, setIsTaskEditbale] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
   useClickOutside(ref, () => setIsTaskEditbale(false), `ignoreClickOutside${id}`);
+  const { updateTask } = useTaskStorage();
+
+  useEffect(() => {
+    if (!isTaskEditable) {
+      updateTask({ title: taskTitle, id, checked: isTaskChecked });
+    }
+  }, [isTaskEditable, isTaskChecked]);
 
   useEffect(() => {
     if (ref?.current && isTaskEditable) {

@@ -1,20 +1,28 @@
-import { useState } from 'react';
 import { TaskItemType } from '../types/TaskItemType';
+import { useTaskStoreContext } from './useTaskStoreContext';
+import { isEqual } from 'lodash-es';
 
 export const useTaskStorage = () => {
-  const [taskList, setTaskList] = useState<TaskItemType[]>(
-    JSON.parse(localStorage.getItem('tasks-list')) || [],
-  );
+  const { localStorageTaskStore, setTaskList, taskList } = useTaskStoreContext();
 
   const addTaskToList = ({ title, id, checked }: TaskItemType) => {
-    localStorage.setItem('tasks-list', JSON.stringify([...taskList, { title, id, checked }]));
-    const currentTasksList = getTaskList();
+    localStorageTaskStore.set([...taskList, { title, id, checked }]);
+    const currentTasksList = localStorageTaskStore.get();
     setTaskList(currentTasksList);
   };
 
-  const getTaskList = () => {
-    return JSON.parse(localStorage.getItem('tasks-list'));
+  const updateTask = (task: TaskItemType) => {
+    const taskToUpdate = taskList.find((item) => item.id === task.id);
+    isEqual(task, taskToUpdate);
+    if (isEqual(task, taskToUpdate)) {
+      return;
+    }
+    const listInStorage: TaskItemType[] = localStorageTaskStore.get();
+    const updatedList = listInStorage.map((item) => (item.id === taskToUpdate?.id ? task : item));
+    localStorageTaskStore.set(updatedList);
+    const currentTasksList = localStorageTaskStore.get();
+    setTaskList(currentTasksList);
   };
 
-  return { addTaskToList, taskList };
+  return { addTaskToList, taskList, updateTask };
 };
