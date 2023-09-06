@@ -1,5 +1,6 @@
 import { TaskItemType } from '../types/TaskItemType';
 import { useTaskStoreContext } from './useTaskStoreContext';
+import { isEqual } from 'lodash-es';
 
 export const useTaskStorage = () => {
   const { localStorageTaskStore, setTaskList, taskList } = useTaskStoreContext();
@@ -10,5 +11,18 @@ export const useTaskStorage = () => {
     setTaskList(currentTasksList);
   };
 
-  return { addTaskToList, taskList };
+  const updateTask = (task: TaskItemType) => {
+    const taskToUpdate = taskList.find((item) => item.id === task.id);
+    isEqual(task, taskToUpdate);
+    if (isEqual(task, taskToUpdate)) {
+      return;
+    }
+    const listInStorage: TaskItemType[] = localStorageTaskStore.get();
+    const updatedList = listInStorage.map((item) => (item.id === taskToUpdate?.id ? task : item));
+    localStorageTaskStore.set(updatedList);
+    const currentTasksList = localStorageTaskStore.get();
+    setTaskList(currentTasksList);
+  };
+
+  return { addTaskToList, taskList, updateTask };
 };
