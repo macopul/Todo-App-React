@@ -14,7 +14,11 @@ const AddToDoSection = () => {
 
   // TODO: WHERE IS SAFE CHECK FOR EMPTY TASK TITLE? WHERE IS CLEARANCE OF INPUT AFTER ADDING TASK?
   const handleAddTaskButtonClick = () => {
-    addTaskToList({ title: taskTitle, id: Math.random().toString(), checked: false });
+    if (ref.current?.value.trim() !== '') {
+      addTaskToList({ title: taskTitle, id: Math.random().toString(), checked: false });
+    } else {
+      window.alert('The task can not be empty');
+    }
     if (ref.current) {
       ref.current.value = '';
       ref.current.placeholder = labels.addTaskInputPlaceholder;
