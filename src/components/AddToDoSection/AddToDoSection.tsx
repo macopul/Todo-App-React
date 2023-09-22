@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useTaskStorage } from '../../hooks/useTaskStorage';
 import styles from './AddToDoSection.module.scss';
 
@@ -10,26 +10,21 @@ const AddToDoSection = () => {
   // now we can use useTaskStorage in any place at any level - cause methods inside are operating on shared context state which is one for all children - look inside TaskStoreContextProvider.tsx and in App.tsx
   const { addTaskToList } = useTaskStorage();
   const [taskTitle, setTaskTitle] = useState('');
-  const ref = useRef<HTMLInputElement>(null);
 
-  // TODO: WHERE IS SAFE CHECK FOR EMPTY TASK TITLE? WHERE IS CLEARANCE OF INPUT AFTER ADDING TASK?
   const handleAddTaskButtonClick = () => {
-    if (ref.current?.value.trim() !== '') {
+    if (taskTitle !== '') {
       addTaskToList({ title: taskTitle, id: Math.random().toString(), checked: false });
+      setTaskTitle('');
     } else {
       window.alert('The task can not be empty');
-    }
-    if (ref.current) {
-      ref.current.value = '';
-      ref.current.placeholder = labels.addTaskInputPlaceholder;
     }
   };
 
   return (
     <div className={styles.AddToDoSection}>
       <input
-        ref={ref}
         type="text"
+        value={taskTitle}
         placeholder={labels.addTaskInputPlaceholder}
         onChange={(e) => setTaskTitle(e.target.value)}
       />

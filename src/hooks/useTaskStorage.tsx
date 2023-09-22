@@ -31,7 +31,6 @@ export const useTaskStorage = () => {
       localStorageTaskStore.set(updatedList);
       const currentTasksList = localStorageTaskStore.get();
       setTaskList(currentTasksList);
-      console.log('this is taskList after update', taskList);
     }
   };
 
