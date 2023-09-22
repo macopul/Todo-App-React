@@ -12,12 +12,12 @@ const AddToDoSection = () => {
   const [taskTitle, setTaskTitle] = useState('');
 
   const handleAddTaskButtonClick = () => {
-    if (taskTitle !== '') {
-      addTaskToList({ title: taskTitle, id: Math.random().toString(), checked: false });
-      setTaskTitle('');
-    } else {
+    if (!taskTitle) {
       window.alert('The task can not be empty');
+      return;
     }
+    addTaskToList({ title: taskTitle, id: Math.random().toString(), checked: false });
+    setTaskTitle('');
   };
 
   return (
