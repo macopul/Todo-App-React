@@ -15,7 +15,7 @@ const TaskItem = ({ title, checked, id }: TaskItemType) => {
   const [isTaskEditable, setIsTaskEditbale] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
   useClickOutside(ref, () => setIsTaskEditbale(false), `ignoreClickOutside${id}`);
-  const { updateTask } = useTaskStorage();
+  const { updateTask, deleteTask } = useTaskStorage();
 
   useEffect(() => {
     if (!isTaskEditable) {
@@ -59,7 +59,7 @@ const TaskItem = ({ title, checked, id }: TaskItemType) => {
       >
         <AiFillEdit className={styles.buttonIcon} />
       </IconButton>
-      <IconButton classname={clsx(styles.deleteButton)}>
+      <IconButton classname={clsx(styles.deleteButton)} onClick={() => deleteTask(id)}>
         <MdDelete className={styles.buttonIcon} />
       </IconButton>
     </div>

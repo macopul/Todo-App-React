@@ -11,15 +11,20 @@ const AddToDoSection = () => {
   const { addTaskToList } = useTaskStorage();
   const [taskTitle, setTaskTitle] = useState('');
 
-  // TODO: WHERE IS SAFE CHECK FOR EMPTY TASK TITLE? WHERE IS CLEARANCE OF INPUT AFTER ADDING TASK?
   const handleAddTaskButtonClick = () => {
+    if (!taskTitle) {
+      window.alert('The task can not be empty');
+      return;
+    }
     addTaskToList({ title: taskTitle, id: Math.random().toString(), checked: false });
+    setTaskTitle('');
   };
 
   return (
     <div className={styles.AddToDoSection}>
       <input
         type="text"
+        value={taskTitle}
         placeholder={labels.addTaskInputPlaceholder}
         onChange={(e) => setTaskTitle(e.target.value)}
       />

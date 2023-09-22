@@ -24,5 +24,15 @@ export const useTaskStorage = () => {
     setTaskList(currentTasksList);
   };
 
-  return { addTaskToList, taskList, updateTask };
+  const deleteTask = (id: string) => {
+    const taskToDelete = taskList.find((task) => (task.id = id));
+    if (taskToDelete) {
+      const updatedList = taskList.filter((task) => task !== taskToDelete);
+      localStorageTaskStore.set(updatedList);
+      const currentTasksList = localStorageTaskStore.get();
+      setTaskList(currentTasksList);
+    }
+  };
+
+  return { addTaskToList, taskList, updateTask, deleteTask };
 };
