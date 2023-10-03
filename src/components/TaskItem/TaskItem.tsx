@@ -9,7 +9,7 @@ import useClickOutside from '../../hooks/useClickOutside';
 import { TaskItemType } from '../../types/TaskItemType';
 import { useTaskStorage } from '../../hooks/useTaskStorage';
 
-const TaskItem = ({ title, checked, id }: TaskItemType) => {
+const TaskItem = ({ title, checked, id, groupId }: TaskItemType) => {
   const [taskTitle, setTaskTitle] = useState(title);
   const [isTaskChecked, setIsTaskChecked] = useState(checked);
   const [isTaskEditable, setIsTaskEditbale] = useState(false);
@@ -19,7 +19,7 @@ const TaskItem = ({ title, checked, id }: TaskItemType) => {
 
   useEffect(() => {
     if (!isTaskEditable) {
-      updateTask({ title: taskTitle, id, checked: isTaskChecked });
+      updateTask({ title: taskTitle, id, checked: isTaskChecked, groupId: groupId });
     }
   }, [isTaskEditable, isTaskChecked]);
 
@@ -59,7 +59,7 @@ const TaskItem = ({ title, checked, id }: TaskItemType) => {
       >
         <AiFillEdit className={styles.buttonIcon} />
       </IconButton>
-      <IconButton classname={clsx(styles.deleteButton)} onClick={() => deleteTask(id)}>
+      <IconButton classname={clsx(styles.deleteButton)} onClick={() => deleteTask(id, groupId)}>
         <MdDelete className={styles.buttonIcon} />
       </IconButton>
     </div>
