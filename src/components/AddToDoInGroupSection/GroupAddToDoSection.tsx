@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTaskStorage } from '../../hooks/useTaskStorage';
+import styles from './GroupAddToDoSection.module.scss'
 
 const labels = {
   addTaskInputPlaceholder: 'Add New Task...',
@@ -28,7 +29,7 @@ const GroupAddToDoSection = ({ groupId }: GroupAddToDoSectionType) => {
   };
 
   return (
-    <div>
+    <div className={styles.GroupAddToDoSection}>
       <input
         type="text"
         value={taskTitle}

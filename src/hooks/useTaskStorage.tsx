@@ -9,7 +9,7 @@ export const useTaskStorage = () => {
   const groups = taskStore.groups;
   const taskList = taskStore.taskList;
 
-  const addGroupToList = (group: TaskItemGroupType) => {
+  const addTaskGroup = (group: TaskItemGroupType) => {
     localStorageTaskStore.set({ ...taskStore, groups: [...groups, group] });
     const currentTaskStore = localStorageTaskStore.get();
     setTaskStore(currentTaskStore);
@@ -99,7 +99,7 @@ export const useTaskStorage = () => {
   return {
     groups,
     taskList,
-    addGroupToList,
+    addTaskGroup,
     addTask,
     updateTask,
     deleteTask,
