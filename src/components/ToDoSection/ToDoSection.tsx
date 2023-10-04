@@ -5,11 +5,11 @@ import TasksItemList from '../TaskItemsList.tsx/TaskItemsList';
 import styles from './TodoSection.module.scss';
 
 const TodoSection = () => {
-  const { taskList, taskGroupList } = useTaskStorage();
+  const { taskList, groups } = useTaskStorage();
 
   return (
     <div className={styles.TodoSectionComponent}>
-      <TaskGroupList groupList={taskGroupList} />
+      <TaskGroupList groupList={groups} />
       <TasksItemList taskList={taskList} />
       <AddToDoSection />
     </div>

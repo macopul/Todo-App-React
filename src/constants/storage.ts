@@ -1,2 +1,1 @@
-export const TASKS_LIST_STORAGE_KEY = 'tasks-list';
-export const TASK_GROUPS_STORAGE_KEY = 'task-groups-list';
+export const TASK_STORAGE_KEY = 'task-store';

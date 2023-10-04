@@ -1,9 +1,10 @@
 .LayoutComponent {
   width: 100vw;
   max-width: 1440px;
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   background-color: var(--primary-color-4);
   display: flex;
   justify-content: center;
-  padding: 20px 0;
+  padding: 20px;
 }

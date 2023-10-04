@@ -4,54 +4,49 @@ import { useTaskStoreContext } from './useTaskStoreContext';
 import { isEqual } from 'lodash-es';
 
 export const useTaskStorage = () => {
-  const {
-    localStorageTaskListStore,
-    setTaskList,
-    taskList,
-    localStorageTaskGroupStore,
-    setTaskGroupList,
-    taskGroupList,
-  } = useTaskStoreContext();
+  const { taskStore, localStorageTaskStore, setTaskStore } = useTaskStoreContext();
+
+  const groups = taskStore.groups;
+  const taskList = taskStore.taskList;
 
   const addGroupToList = (group: TaskItemGroupType) => {
-    localStorageTaskGroupStore.set([...taskGroupList, group]);
-    const currentGroupList = localStorageTaskGroupStore.get();
-    setTaskGroupList(currentGroupList);
+    localStorageTaskStore.set({ ...taskStore, groups: [...groups, group] });
+    const currentTaskStore = localStorageTaskStore.get();
+    setTaskStore(currentTaskStore);
   };
 
   const addTask = (task: TaskItemType) => {
     if (task.groupId) {
-      const actualGroupList = taskGroupList.find((group) => group.groupId === task.groupId);
+      const actualGroupList = groups.find((group) => group.groupId === task.groupId);
       actualGroupList?.taskList.push(task);
       if (actualGroupList) {
-        const updatedGroupList = taskGroupList.map((group) => {
+        const updatedGroupList = groups.map((group) => {
           if (group.groupId === task.groupId) {
             return actualGroupList;
           }
           return group;
         });
-        localStorageTaskGroupStore.set(updatedGroupList);
-        const currentGroupList = localStorageTaskGroupStore.get();
-        setTaskGroupList(currentGroupList);
+        localStorageTaskStore.set({ ...taskStore, groups: updatedGroupList });
+        const currentTaskStore = localStorageTaskStore.get();
+        setTaskStore(currentTaskStore);
         return;
       }
     }
-    localStorageTaskListStore.set([...taskList, task]);
-    const currentTasksList = localStorageTaskListStore.get();
-    setTaskList(currentTasksList);
+    localStorageTaskStore.set({ taskList: [...taskList, task], groups });
+    const currentTaskStore = localStorageTaskStore.get();
+    setTaskStore(currentTaskStore);
   };
 
   const updateTask = (task: TaskItemType) => {
     if (task.groupId) {
-      const taskToUpdateInGroup = taskGroupList
+      const taskToUpdateInGroup = groups
         .find((group) => group.groupId === task.groupId)
         ?.taskList.find((item) => item.id == task.id);
       isEqual(task, taskToUpdateInGroup);
       if (isEqual(task, taskToUpdateInGroup)) {
         return;
       }
-      const groupsInStorage = localStorageTaskGroupStore.get();
-      const updatedGroups = groupsInStorage.map((group) => {
+      const updatedGroups = groups.map((group) => {
         if (group.groupId === task.groupId) {
           group.taskList = group.taskList.map((item) =>
             item.id === taskToUpdateInGroup?.id ? task : item,
@@ -59,9 +54,9 @@ export const useTaskStorage = () => {
         }
         return group;
       });
-      localStorageTaskGroupStore.set(updatedGroups);
-      const currentGroupList = localStorageTaskGroupStore.get();
-      setTaskGroupList(currentGroupList);
+      localStorageTaskStore.set({ taskList, groups: updatedGroups });
+      const currentTaskStore = localStorageTaskStore.get();
+      setTaskStore(currentTaskStore);
       return;
     }
     const taskToUpdate = taskList.find((item) => item.id === task.id);
@@ -69,41 +64,40 @@ export const useTaskStorage = () => {
     if (isEqual(task, taskToUpdate)) {
       return;
     }
-    const listInStorage = localStorageTaskListStore.get();
-    const updatedList = listInStorage.map((item) => (item.id === taskToUpdate?.id ? task : item));
-    localStorageTaskListStore.set(updatedList);
-    const currentTasksList = localStorageTaskListStore.get();
-    setTaskList(currentTasksList);
+    const updatedList = taskList.map((item) => (item.id === taskToUpdate?.id ? task : item));
+    localStorageTaskStore.set({ taskList: updatedList, groups });
+    const currentTaskStore = localStorageTaskStore.get();
+    setTaskStore(currentTaskStore);
   };
 
   const deleteTask = (id: string, groupId?: string) => {
     if (groupId) {
-      const groupWithTaskToDelete = taskGroupList.find((group) => group.groupId === groupId);
+      const groupWithTaskToDelete = groups.find((group) => group.groupId === groupId);
       const taskToDelete = groupWithTaskToDelete?.taskList.find((task) => task.id === id);
       if (groupWithTaskToDelete && taskToDelete) {
         const updatedGroupTaskList = groupWithTaskToDelete.taskList.filter(
           (task) => task !== taskToDelete,
         );
         groupWithTaskToDelete.taskList = updatedGroupTaskList;
-        const updatedGroups = taskGroupList.map((group) =>
+        const updatedGroups = groups.map((group) =>
           group.groupId === groupId ? groupWithTaskToDelete : group,
         );
-        localStorageTaskGroupStore.set(updatedGroups);
-        const currentGroupList = localStorageTaskGroupStore.get();
-        setTaskGroupList(currentGroupList);
+        localStorageTaskStore.set({ taskList, groups: updatedGroups });
+        const currentTaskStore = localStorageTaskStore.get();
+        setTaskStore(currentTaskStore);
       }
     }
     const taskToDelete = taskList.find((task) => task.id === id);
     if (taskToDelete) {
       const updatedList = taskList.filter((task) => task !== taskToDelete);
-      localStorageTaskListStore.set(updatedList);
-      const currentTasksList = localStorageTaskListStore.get();
-      setTaskList(currentTasksList);
+      localStorageTaskStore.set({ taskList: updatedList, groups });
+      const currentTaskStore = localStorageTaskStore.get();
+      setTaskStore(currentTaskStore);
     }
   };
 
   return {
-    taskGroupList,
+    groups,
     taskList,
     addGroupToList,
     addTask,
