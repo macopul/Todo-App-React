@@ -1,7 +1,7 @@
 import TaskItem from '../TaskItem/TaskItem';
 import { TaskItemGroupType } from '../../types/TaskItemGroupType';
-import GroupAddToDoSection from '../AddToDoInGroupSection/GroupAddToDoSection';
-import styles from './TaskGroup.module.scss'
+import styles from './TaskGroup.module.scss';
+import AddToDoSection from '../AddToDoSection/AddToDoSection';
 
 const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
   return (
@@ -16,7 +16,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
           groupId={task.groupId}
         />
       ))}
-      <GroupAddToDoSection groupId={groupId} />
+      <AddToDoSection groupId={groupId} />
     </div>
   );
 };
