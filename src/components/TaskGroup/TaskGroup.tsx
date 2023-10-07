@@ -3,7 +3,7 @@ import { TaskItemGroupType } from '../../types/TaskItemGroupType';
 import AddToDoSection from '../AddToDoSection/AddToDoSection';
 import styles from './TaskGroup.module.scss';
 import { TiDelete } from 'react-icons/ti';
-import { AiFillEdit } from 'react-icons/ai';
+import { BiEdit } from'react-icons/bi';
 import IconButton from '../IconButton/IconButton';
 import clsx from 'clsx';
 import { useTaskStorage } from '../../hooks/useTaskStorage';
@@ -21,12 +21,12 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
     },
     `ignoreClickOutside${groupId}`,
   );
-  const { deleteTaskGroup, updateTaskGroupTitle } = useTaskStorage();
+  const { deleteTaskGroup, updateGroupTitle } = useTaskStorage();
   const [title, setTitle] = useState(groupTitle);
 
   useEffect(() => {
     if (!isGroupEditable) {
-      updateTaskGroupTitle(groupId, title);
+      updateGroupTitle(groupId, title);
     }
   }, [isGroupEditable]);
 
@@ -45,9 +45,6 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
           id={groupId}
           readonly={!isGroupEditable}
           onChange={(e) => setTitle(e.target.value)}
-          onClick={() => {
-            setIsGroupEditbale(true);
-          }}
           classname={clsx(styles.groupInput, {
             [styles.groupEditable]: isGroupEditable,
           })}
@@ -62,7 +59,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
             setIsGroupEditbale(!isGroupEditable);
           }}
         >
-          <AiFillEdit className={styles.buttonIcon} />
+          <BiEdit className={styles.buttonIcon} />
         </IconButton>
         <IconButton classname={clsx(styles.deleteButton)} onClick={() => deleteTaskGroup(groupId)}>
           <TiDelete className={styles.buttonIcon} />

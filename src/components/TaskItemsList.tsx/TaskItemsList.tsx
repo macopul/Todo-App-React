@@ -7,7 +7,7 @@ type TasksItemListType = {
 
 const TasksItemList = ({ taskList }: TasksItemListType) => {
   return (
-    <div style={{marginTop:40}}>
+    <div style={{marginTop:20}}>
       {taskList.map((task) => (
         <TaskItem key={task.id} title={task.title} checked={task.checked} id={task.id} />
       ))}

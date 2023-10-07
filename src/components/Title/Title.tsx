@@ -6,7 +6,7 @@ type TitleType = {
   classname?: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onClick: () => void;
+  onClick?: () => void;
   readonly: boolean;
 };
 

@@ -24,7 +24,7 @@ export const useTaskStorage = () => {
     setTaskStore(currentTaskStore);
   };
 
-  const updateTaskGroupTitle = (groupId: string, title: string) => {
+  const updateGroupTitle = (groupId: string, title: string) => {
     const groupToUpdate = groups.find((group) => group.groupId === groupId);
     if (title === groupToUpdate?.groupTitle) {
       return;
@@ -129,6 +129,6 @@ export const useTaskStorage = () => {
     updateTask,
     deleteTask,
     deleteTaskGroup,
-    updateTaskGroupTitle,
+    updateGroupTitle,
   };
 };
