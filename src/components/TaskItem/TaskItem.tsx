@@ -8,6 +8,7 @@ import styles from './TaskItem.module.scss';
 import useClickOutside from '../../hooks/useClickOutside';
 import { TaskItemType } from '../../types/TaskItemType';
 import { useTaskStorage } from '../../hooks/useTaskStorage';
+import Title from '../Title/Title';
 
 const TaskItem = ({ title, checked, id, groupId }: TaskItemType) => {
   const [taskTitle, setTaskTitle] = useState(title);
@@ -32,17 +33,16 @@ const TaskItem = ({ title, checked, id, groupId }: TaskItemType) => {
   return (
     <div className={styles.TaskItemComponent}>
       <Checkbox checked={isTaskChecked} onChange={() => setIsTaskChecked(!isTaskChecked)} />
-      <input
+      <Title
         ref={ref}
         id={id}
-        className={clsx(styles.taskInput, {
+        classname={clsx(styles.taskInput, {
           [styles.taskEditable]: isTaskEditable && !isTaskChecked,
           [styles.taskChecked]: isTaskChecked,
         })}
-        type="text"
         value={taskTitle}
         onChange={(e) => setTaskTitle(e.target.value)}
-        readOnly={isTaskChecked}
+        readonly={isTaskChecked}
         onClick={() => {
           setIsTaskEditbale(true);
         }}

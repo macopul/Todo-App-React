@@ -15,6 +15,31 @@ export const useTaskStorage = () => {
     setTaskStore(currentTaskStore);
   };
 
+  const deleteTaskGroup = (groupId: string) => {
+    localStorageTaskStore.set({
+      ...taskStore,
+      groups: groups.filter((group) => group.groupId !== groupId),
+    });
+    const currentTaskStore = localStorageTaskStore.get();
+    setTaskStore(currentTaskStore);
+  };
+
+  const updateTaskGroupTitle = (groupId: string, title: string) => {
+    const groupToUpdate = groups.find((group) => group.groupId === groupId);
+    if (title === groupToUpdate?.groupTitle) {
+      return;
+    }
+    const updatedGroups = groups.map((group) => {
+      if (group.groupId === groupId) {
+        group.groupTitle = title;
+      }
+      return group;
+    });
+    localStorageTaskStore.set({ taskList, groups: updatedGroups });
+    const currentTaskStore = localStorageTaskStore.get();
+    setTaskStore(currentTaskStore);
+  };
+
   const addTask = (task: TaskItemType) => {
     if (task.groupId) {
       const actualGroupList = groups.find((group) => group.groupId === task.groupId);
@@ -103,5 +128,7 @@ export const useTaskStorage = () => {
     addTask,
     updateTask,
     deleteTask,
+    deleteTaskGroup,
+    updateTaskGroupTitle,
   };
 };

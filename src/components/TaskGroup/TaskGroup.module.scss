@@ -1,3 +1,60 @@
 .TaskGroup {
-  padding-bottom: 15px ;
+  padding-bottom: 15px;
+}
+
+.taskGroupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px 5px 0;
+}
+
+.editButton {
+  margin-left: auto;
+  opacity: 0.5;
+}
+
+.editButton:hover {
+  opacity: 1;
+}
+
+.editButtonActive {
+  outline: 2px solid var(--secondary-color-2);
+  opacity: 1;
+}
+
+.deleteButton {
+  opacity: 0.5;
+}
+
+.deleteButton:hover {
+  opacity: 1;
+}
+
+.buttonIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color-1);
+  color: var(--primary-color-3);
+  border: none;
+  outline: none;
+  pointer-events: none;
+}
+
+.groupInput {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
+    Verdana, sans-serif;
+  font-size: 20px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: black;
+}
+.groupEditable {
+  background: var(--primary-color-2);
+  outline: solid 1px var(--primary-color-3);
+  border-radius: 8px;
 }
