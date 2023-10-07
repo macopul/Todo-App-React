@@ -1,6 +1,6 @@
 import TaskItem from '../TaskItem/TaskItem';
 import { TaskItemGroupType } from '../../types/TaskItemGroupType';
-import GroupAddToDoSection from '../AddToDoInGroupSection/GroupAddToDoSection';
+import AddToDoSection from '../AddToDoSection/AddToDoSection';
 import styles from './TaskGroup.module.scss';
 import { TiDelete } from 'react-icons/ti';
 import { AiFillEdit } from 'react-icons/ai';
