@@ -77,7 +77,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
           groupId={task.groupId}
         />
       ))}
-      <GroupAddToDoSection groupId={groupId} />
+      <AddToDoSection groupId={groupId} />
     </div>
   );
 };

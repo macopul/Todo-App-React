@@ -3,10 +3,15 @@ import { useTaskStorage } from '../../hooks/useTaskStorage';
 import styles from './AddToDoSection.module.scss';
 
 const labels = {
-  addTaskInputPlaceholder: 'Add New Group or Task...',
+  addTaskInputPlaceholder: 'Add New Task...',
+  addTaskOrGroupInputPlaceholder: 'Add New Group or Task...',
 };
 
-const AddToDoSection = () => {
+type AddToDoSectionType = {
+  groupId?: string;
+};
+
+const AddToDoSection = ({groupId}: AddToDoSectionType) => {
   // now we can use useTaskStorage in any place at any level - cause methods inside are operating on shared context state which is one for all children - look inside TaskStoreContextProvider.tsx and in App.tsx
   const { addTask, addTaskGroup } = useTaskStorage();
   const [title, setTitle] = useState('');
@@ -18,7 +23,12 @@ const AddToDoSection = () => {
     }
     switch (action) {
       case 'task':
-        addTask({ title: title, id: Math.random().toString(), checked: false });
+        addTask({
+          title: title,
+          id: Math.random().toString(),
+          checked: false,
+          groupId: groupId,
+        });
         break;
       case 'group':
         addTaskGroup({ groupTitle: title, groupId: Math.random().toString(), taskList: [] });
@@ -34,11 +44,13 @@ const AddToDoSection = () => {
       <input
         type="text"
         value={title}
-        placeholder={labels.addTaskInputPlaceholder}
+        placeholder={
+          groupId ? labels.addTaskInputPlaceholder : labels.addTaskOrGroupInputPlaceholder
+        }
         onChange={(e) => setTitle(e.target.value)}
       />
       <button onClick={() => handleAddButton('task')}>Add New Task</button>
-      <button onClick={() => handleAddButton('group')}>Add New Group</button>
+      {!groupId && <button onClick={() => handleAddButton('group')}>Add New Group</button>}
     </div>
   );
 };
