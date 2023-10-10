@@ -27,9 +27,6 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
     if (!isGroupEditable) {
       updateGroupTitle(groupId, title);
     }
-  }, [isGroupEditable]);
-
-  useEffect(() => {
     if (ref?.current && isGroupEditable) {
       ref.current.focus();
     }
