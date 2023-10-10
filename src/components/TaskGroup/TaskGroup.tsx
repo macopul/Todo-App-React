@@ -3,11 +3,10 @@ import { TaskItemGroupType } from '../../types/TaskItemGroupType';
 import AddToDoSection from '../AddToDoSection/AddToDoSection';
 import styles from './TaskGroup.module.scss';
 import { TiDelete } from 'react-icons/ti';
-import { BiEdit } from'react-icons/bi';
+import { BiEdit } from 'react-icons/bi';
 import IconButton from '../IconButton/IconButton';
 import clsx from 'clsx';
 import { useTaskStorage } from '../../hooks/useTaskStorage';
-import Title from '../Title/Title';
 import { useState, useEffect, useRef } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 
@@ -39,13 +38,13 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
   return (
     <div className={styles.TaskGroup}>
       <div className={styles.taskGroupHeader}>
-        <Title
+        <input
           ref={ref}
           value={title}
           id={groupId}
-          readonly={!isGroupEditable}
+          readOnly={!isGroupEditable}
           onChange={(e) => setTitle(e.target.value)}
-          classname={clsx(styles.groupInput, {
+          className={clsx(styles.groupInput, {
             [styles.groupEditable]: isGroupEditable,
           })}
         />
