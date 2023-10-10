@@ -1,3 +1,31 @@
 .TaskGroup {
-  padding-bottom: 15px ;
+  padding-bottom: 15px;
+}
+
+.taskGroupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskList {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s;
+}
+.taskList > div {
+  overflow: hidden;
+}
+
+.taskList.active {
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.5s;
+}
+
+.accordionIcon.active {
+  transform: rotate(180deg);
+}
+
+.accordionIcon {
+  transition: 0.5s;
 }
