@@ -39,7 +39,6 @@ const TaskItem = ({ title, checked, id, groupId }: TaskItemType) => {
           [styles.taskEditable]: isTaskEditable && !isTaskChecked,
           [styles.taskChecked]: isTaskChecked,
         })}
-        type="text"
         value={taskTitle}
         onChange={(e) => setTaskTitle(e.target.value)}
         readOnly={isTaskChecked}
