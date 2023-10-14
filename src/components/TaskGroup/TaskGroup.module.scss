@@ -16,6 +16,7 @@
 
 .editButton:hover {
   opacity: 1;
+   transition: 0.5s;
 }
 
 .editButtonActive {
@@ -25,6 +26,7 @@
 
 .deleteButton {
   opacity: 0.5;
+   transition: 0.5s;
 }
 
 .deleteButton:hover {
@@ -61,7 +63,6 @@
   border-radius: 8px;
 }
 
-
 .taskList {
   display: grid;
   grid-template-rows: 0fr;
@@ -81,4 +82,10 @@
 }
 
 .accordionIcon {
-  transition: 0.5s;}
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.accordionIcon:hover {
+  opacity: 1;
+}
