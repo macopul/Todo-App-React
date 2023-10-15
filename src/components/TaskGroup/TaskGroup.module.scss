@@ -16,7 +16,7 @@
 
 .editButton:hover {
   opacity: 1;
-   transition: 0.5s;
+  transition: 0.5s;
 }
 
 .editButtonActive {
@@ -26,7 +26,7 @@
 
 .deleteButton {
   opacity: 0.5;
-   transition: 0.5s;
+  transition: 0.5s;
 }
 
 .deleteButton:hover {
@@ -68,6 +68,7 @@
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.5s;
 }
+
 .taskList > div {
   overflow: hidden;
 }

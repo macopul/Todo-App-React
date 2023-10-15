@@ -26,8 +26,6 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
   const { deleteTaskGroup, updateGroupTitle } = useTaskStorage();
   const [title, setTitle] = useState(groupTitle);
 
-  useEffect(() => console.log('TASK GROUP RENDERED'));
-
   useEffect(() => {
     if (!isGroupEditable) {
       updateGroupTitle(groupId, title);
@@ -45,10 +43,12 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
 
   const handleOnClcikAddTask = () => {
     if (
-      !accordionRef.current?.classList.contains('active') &&
-      !iconRef.current?.classList.contains('active')
-    )
-      accordionRef.current?.classList.add(styles.active);
+      accordionRef.current?.classList.contains('active') &&
+      iconRef.current?.classList.contains('active')
+    ) {
+      return;
+    }
+    accordionRef.current?.classList.add(styles.active);
     iconRef.current?.classList.add(styles.active);
   };
 
@@ -87,7 +87,6 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
         >
           <IoIosArrowDropdownCircle className={styles.buttonIcon} />
         </IconButton>
-        {/* </div> */}
       </div>
       <div className={styles.taskList} ref={accordionRef}>
         <div>
