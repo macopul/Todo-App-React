@@ -36,7 +36,6 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
   }, [isGroupEditable]);
 
   const handleAccordionOnClick = () => {
-    console.log(iconRef.current);
     accordionRef.current?.classList.toggle(styles.active);
     iconRef.current?.classList.toggle(styles.active);
   };

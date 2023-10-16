@@ -8,8 +8,7 @@ type IconButtonProps = {
   classname?: string;
   onClick?: () => void;
   id?: string;
-} & // React.ComponentPropsWithRef<'button'>;
-React.ButtonHTMLAttributes<HTMLButtonElement>;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   ({ children, classname, onClick, id, ...rest }: IconButtonProps, ref) => {
