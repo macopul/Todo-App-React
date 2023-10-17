@@ -9,6 +9,7 @@ import clsx from 'clsx';
 import { useTaskStorage } from '../../hooks/useTaskStorage';
 import { useState, useEffect, useRef } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
+import TaskCounter from '../TaskCounter/TaskCounter';
 
 const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
   const [isGroupEditable, setIsGroupEditbale] = useState(false);
@@ -20,8 +21,14 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
     },
     `ignoreClickOutside${groupId}`,
   );
-  const { deleteTaskGroup, updateGroupTitle } = useTaskStorage();
+  const { deleteTaskGroup, updateGroupTitle, groups } = useTaskStorage();
   const [title, setTitle] = useState(groupTitle);
+  const taskQuantity = groups.find((group) => group.groupId === groupId)!.taskList.length;
+  const [taskCount, setTaskCount] = useState(taskQuantity);
+
+  useEffect(() => {
+    setTaskCount(taskQuantity);
+  }, [taskQuantity]);
 
   useEffect(() => {
     if (!isGroupEditable) {
@@ -45,6 +52,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
             [styles.groupEditable]: isGroupEditable,
           })}
         />
+        <TaskCounter taskQuantity={taskCount} />
         <IconButton
           data-ignore-click-outside={`ignoreClickOutside${groupId}`}
           id={groupId}
