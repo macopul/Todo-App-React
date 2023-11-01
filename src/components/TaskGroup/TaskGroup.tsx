@@ -11,8 +11,9 @@ import { useState, useEffect, useRef } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 import { IoIosArrowDropdownCircle } from 'react-icons/io';
 
-const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
+const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupType) => {
   const [isGroupEditable, setIsGroupEditbale] = useState(false);
+  const [isGroupHidden, setIsGroupHidden] = useState(isHidden);
   const inputRef = useRef<HTMLInputElement>(null);
   const iconRef = useRef<HTMLButtonElement>(null);
   const accordionRef = useRef<HTMLDivElement>(null);
@@ -23,7 +24,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
     },
     `ignoreClickOutside${groupId}`,
   );
-  const { deleteTaskGroup, updateGroupTitle } = useTaskStorage();
+  const { deleteTaskGroup, updateGroupTitle, updateIsGroupHidden } = useTaskStorage();
   const [title, setTitle] = useState(groupTitle);
 
   useEffect(() => {
@@ -35,21 +36,9 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
     }
   }, [isGroupEditable]);
 
-  const handleAccordionOnClick = () => {
-    accordionRef.current?.classList.toggle(styles.active);
-    iconRef.current?.classList.toggle(styles.active);
-  };
-
-  const handleOnClcikAddTask = () => {
-    if (
-      accordionRef.current?.classList.contains('active') &&
-      iconRef.current?.classList.contains('active')
-    ) {
-      return;
-    }
-    accordionRef.current?.classList.add(styles.active);
-    iconRef.current?.classList.add(styles.active);
-  };
+  useEffect(() => {
+    updateIsGroupHidden(groupId, true);
+  }, []);
 
   return (
     <div className={styles.TaskGroup}>
@@ -80,14 +69,17 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
           <TiDelete className={styles.buttonIcon} />
         </IconButton>
         <IconButton
-          classname={clsx(styles.accordionIcon)}
-          onClick={handleAccordionOnClick}
+          classname={clsx(styles.accordionIcon, { [styles.hidden]: isGroupHidden })}
+          onClick={() => {
+            setIsGroupHidden(!isGroupHidden);
+            console.log(isGroupHidden);
+          }}
           ref={iconRef}
         >
           <IoIosArrowDropdownCircle className={styles.buttonIcon} />
         </IconButton>
       </div>
-      <div className={styles.taskList} ref={accordionRef}>
+      <div className={clsx(styles.taskList, { [styles.hidden]: isGroupHidden })} ref={accordionRef}>
         <div>
           {taskList.map((task) => (
             <TaskItem
@@ -98,8 +90,10 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
               groupId={task.groupId}
             />
           ))}
+          <div className={styles.addToDoSection}>
+            <AddToDoSection groupId={groupId} />
+          </div>
         </div>
-        <AddToDoSection groupId={groupId} onClickAddTask={handleOnClcikAddTask} />
       </div>
     </div>
   );

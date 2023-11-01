@@ -1,6 +1,6 @@
-.TaskGroup {
-  padding-bottom: 15px;
-}
+// .TaskGroup {
+//   padding-bottom: 15px;
+// }
 
 .taskGroupHeader {
   display: flex;
@@ -65,7 +65,7 @@
 
 .taskList {
   display: grid;
-  grid-template-rows: 0fr;
+  grid-template-rows: 1fr;
   transition: grid-template-rows 0.5s;
 }
 
@@ -73,16 +73,17 @@
   overflow: hidden;
 }
 
-.taskList.active {
-  grid-template-rows: 1fr;
+.taskList.hidden {
+  grid-template-rows: 0fr;
   transition: grid-template-rows 0.5s;
 }
 
-.accordionIcon.active {
-  transform: rotate(180deg);
+.accordionIcon.hidden {
+  transform: rotate(0deg);
 }
 
 .accordionIcon {
+  transform: rotate(180deg);
   opacity: 0.5;
   transition: 0.5s;
 }

@@ -34,7 +34,12 @@ const AddToDoSection = ({ groupId, onClickAddTask }: AddToDoSectionType) => {
         break;
 
       case 'group':
-        addTaskGroup({ groupTitle: title, groupId: Math.random().toString(), taskList: [] });
+        addTaskGroup({
+          groupTitle: title,
+          groupId: Math.random().toString(),
+          taskList: [],
+          isHidden: false,
+        });
         break;
       default:
         break;
