@@ -63,17 +63,17 @@
   border-radius: 8px;
 }
 
-.taskList {
+.taskListSection {
   display: grid;
   grid-template-rows: 1fr;
   transition: grid-template-rows 0.5s;
 }
 
-.taskList > div {
+.taskListSection > div {
   overflow: hidden;
 }
 
-.taskList.hidden {
+.taskListSection.hidden {
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.5s;
 }
@@ -90,4 +90,9 @@
 
 .accordionIcon:hover {
   opacity: 1;
+}
+
+.taskList {
+  max-height: 170px;
+  overflow-y: auto;
 }

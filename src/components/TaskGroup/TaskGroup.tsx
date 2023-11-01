@@ -79,17 +79,19 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
           <IoIosArrowDropdownCircle className={styles.buttonIcon} />
         </IconButton>
       </div>
-      <div className={clsx(styles.taskList, { [styles.hidden]: isGroupHidden })} ref={accordionRef}>
+      <div className={clsx(styles.taskListSection, { [styles.hidden]: isGroupHidden })} ref={accordionRef}>
         <div>
-          {taskList.map((task) => (
-            <TaskItem
-              key={task.id}
-              title={task.title}
-              checked={task.checked}
-              id={task.id}
-              groupId={task.groupId}
-            />
-          ))}
+          <div className={styles.taskList}>
+            {taskList.map((task) => (
+              <TaskItem
+                key={task.id}
+                title={task.title}
+                checked={task.checked}
+                id={task.id}
+                groupId={task.groupId}
+              />
+            ))}
+          </div>
           <div className={styles.addToDoSection}>
             <AddToDoSection groupId={groupId} />
           </div>
