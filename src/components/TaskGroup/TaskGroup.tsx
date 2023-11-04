@@ -36,10 +36,6 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
     }
   }, [isGroupEditable]);
 
-  useEffect(() => {
-    updateIsGroupHidden(groupId, true);
-  }, []);
-
   return (
     <div className={styles.TaskGroup}>
       <div className={styles.taskGroupHeader}>
@@ -72,6 +68,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
           classname={clsx(styles.accordionIcon, { [styles.hidden]: isGroupHidden })}
           onClick={() => {
             setIsGroupHidden(!isGroupHidden);
+            updateIsGroupHidden(groupId, !isGroupHidden);
             console.log(isGroupHidden);
           }}
           ref={iconRef}
@@ -79,7 +76,10 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
           <IoIosArrowDropdownCircle className={styles.buttonIcon} />
         </IconButton>
       </div>
-      <div className={clsx(styles.taskListSection, { [styles.hidden]: isGroupHidden })} ref={accordionRef}>
+      <div
+        className={clsx(styles.taskListSection, { [styles.hidden]: isGroupHidden })}
+        ref={accordionRef}
+      >
         <div>
           <div className={styles.taskList}>
             {taskList.map((task) => (

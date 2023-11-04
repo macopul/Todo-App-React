@@ -25,10 +25,6 @@ export const useTaskStorage = () => {
   };
 
   const updateIsGroupHidden = (groupId: string, isGroupHidden: boolean) => {
-    const groupToUpdate = groups.find((group) => group.groupId === groupId);
-    if (groupToUpdate) {
-      groupToUpdate.isHidden = isGroupHidden;
-    }
     const updatedGroups = groups.map((group) => {
       if (group.groupId === groupId) {
         group.isHidden = isGroupHidden;
