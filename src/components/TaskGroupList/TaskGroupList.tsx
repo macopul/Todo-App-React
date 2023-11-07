@@ -14,6 +14,7 @@ const TaskGroupList = ({ groupList }: GroupListType) => {
           taskList={group.taskList}
           groupId={group.groupId}
           groupTitle={group.groupTitle}
+          isHidden = {group.isHidden}
         />
       ))}
     </>

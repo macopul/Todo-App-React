@@ -4,4 +4,5 @@ export type TaskItemGroupType = {
   groupId: string;
   groupTitle: string;
   taskList: TaskItemType[];
+  isHidden: boolean;
 };
