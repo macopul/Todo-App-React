@@ -10,18 +10,22 @@ import { useTaskStorage } from '../../hooks/useTaskStorage';
 import { useState, useEffect, useRef } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 import TaskCounter from '../TaskCounter/TaskCounter';
+import { IoIosArrowDropdownCircle } from 'react-icons/io';
 
-const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
+const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupType) => {
   const [isGroupEditable, setIsGroupEditbale] = useState(false);
-  const ref = useRef<HTMLInputElement>(null);
+  const [isGroupHidden, setIsGroupHidden] = useState(isHidden);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const iconRef = useRef<HTMLButtonElement>(null);
+  const accordionRef = useRef<HTMLDivElement>(null);
   useClickOutside(
-    ref,
+    inputRef,
     () => {
       setIsGroupEditbale(false);
     },
     `ignoreClickOutside${groupId}`,
   );
-  const { deleteTaskGroup, updateGroupTitle, groups } = useTaskStorage();
+  const { deleteTaskGroup, updateGroupTitle, groups, updateIsGroupHidden } = useTaskStorage();
   const [title, setTitle] = useState(groupTitle);
   const taskQuantity = groups.find((group) => group.groupId === groupId)!.taskList.length;
   const [taskCount, setTaskCount] = useState(taskQuantity);
@@ -34,8 +38,8 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
     if (!isGroupEditable) {
       updateGroupTitle(groupId, title);
     }
-    if (ref?.current && isGroupEditable) {
-      ref.current.focus();
+    if (inputRef?.current && isGroupEditable) {
+      inputRef.current.focus();
     }
   }, [isGroupEditable]);
 
@@ -43,7 +47,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
     <div className={styles.TaskGroup}>
       <div className={styles.taskGroupHeader}>
         <input
-          ref={ref}
+          ref={inputRef}
           value={title}
           id={groupId}
           readOnly={!isGroupEditable}
@@ -68,17 +72,39 @@ const TaskGroup = ({ taskList, groupTitle, groupId }: TaskItemGroupType) => {
         <IconButton classname={clsx(styles.deleteButton)} onClick={() => deleteTaskGroup(groupId)}>
           <TiDelete className={styles.buttonIcon} />
         </IconButton>
+        <IconButton
+          classname={clsx(styles.accordionIcon, { [styles.hidden]: isGroupHidden })}
+          onClick={() => {
+            setIsGroupHidden(!isGroupHidden);
+            updateIsGroupHidden(groupId, !isGroupHidden);
+            console.log(isGroupHidden);
+          }}
+          ref={iconRef}
+        >
+          <IoIosArrowDropdownCircle className={styles.buttonIcon} />
+        </IconButton>
       </div>
-      {taskList.map((task) => (
-        <TaskItem
-          key={task.id}
-          title={task.title}
-          checked={task.checked}
-          id={task.id}
-          groupId={task.groupId}
-        />
-      ))}
-      <AddToDoSection groupId={groupId} />
+      <div
+        className={clsx(styles.taskListSection, { [styles.hidden]: isGroupHidden })}
+        ref={accordionRef}
+      >
+        <div>
+          <div className={styles.taskList}>
+            {taskList.map((task) => (
+              <TaskItem
+                key={task.id}
+                title={task.title}
+                checked={task.checked}
+                id={task.id}
+                groupId={task.groupId}
+              />
+            ))}
+          </div>
+          <div className={styles.addToDoSection}>
+            <AddToDoSection groupId={groupId} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
