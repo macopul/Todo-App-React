@@ -77,7 +77,6 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
           onClick={() => {
             setIsGroupHidden(!isGroupHidden);
             updateIsGroupHidden(groupId, !isGroupHidden);
-            console.log(isGroupHidden);
           }}
           ref={iconRef}
         >
