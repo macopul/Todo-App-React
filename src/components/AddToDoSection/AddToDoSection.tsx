@@ -9,10 +9,9 @@ const labels = {
 
 type AddToDoSectionType = {
   groupId?: string;
-  onClickAddTask?: () => void;
 };
 
-const AddToDoSection = ({ groupId, onClickAddTask }: AddToDoSectionType) => {
+const AddToDoSection = ({ groupId }: AddToDoSectionType) => {
   // now we can use useTaskStorage in any place at any level - cause methods inside are operating on shared context state which is one for all children - look inside TaskStoreContextProvider.tsx and in App.tsx
   const { addTask, addTaskGroup } = useTaskStorage();
   const [title, setTitle] = useState('');
@@ -30,7 +29,6 @@ const AddToDoSection = ({ groupId, onClickAddTask }: AddToDoSectionType) => {
           checked: false,
           groupId: groupId,
         });
-        onClickAddTask?.();
         break;
 
       case 'group':

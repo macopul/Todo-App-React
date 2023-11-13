@@ -1,0 +1,14 @@
+.TaskCounter {
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  opacity: 0.5;
+  margin-left: auto;
+  border-radius: 20%;
+  background-color: var(--primary-color-3);
+  color: var(--primary-color-1);
+}

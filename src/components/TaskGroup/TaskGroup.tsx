@@ -9,6 +9,7 @@ import clsx from 'clsx';
 import { useTaskStorage } from '../../hooks/useTaskStorage';
 import { useState, useEffect, useRef } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
+import TaskCounter from '../TaskCounter/TaskCounter';
 import { IoIosArrowDropdownCircle } from 'react-icons/io';
 
 const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupType) => {
@@ -24,8 +25,14 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
     },
     `ignoreClickOutside${groupId}`,
   );
-  const { deleteTaskGroup, updateGroupTitle, updateIsGroupHidden } = useTaskStorage();
+  const { deleteTaskGroup, updateGroupTitle, groups, updateIsGroupHidden } = useTaskStorage();
   const [title, setTitle] = useState(groupTitle);
+  const taskQuantity = groups.find((group) => group.groupId === groupId)!.taskList.length;
+  const [taskCount, setTaskCount] = useState(taskQuantity);
+
+  useEffect(() => {
+    setTaskCount(taskQuantity);
+  }, [taskQuantity]);
 
   useEffect(() => {
     if (!isGroupEditable) {
@@ -49,6 +56,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
             [styles.groupEditable]: isGroupEditable,
           })}
         />
+        <TaskCounter taskQuantity={taskCount} />
         <IconButton
           data-ignore-click-outside={`ignoreClickOutside${groupId}`}
           id={groupId}
@@ -69,7 +77,6 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
           onClick={() => {
             setIsGroupHidden(!isGroupHidden);
             updateIsGroupHidden(groupId, !isGroupHidden);
-            console.log(isGroupHidden);
           }}
           ref={iconRef}
         >
