@@ -11,13 +11,16 @@ import { useState, useEffect, useRef } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 import TaskCounter from '../TaskCounter/TaskCounter';
 import { IoIosArrowDropdownCircle } from 'react-icons/io';
+import { UIEvent } from 'react';
 
 const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupType) => {
   const [isGroupEditable, setIsGroupEditbale] = useState(false);
   const [isGroupHidden, setIsGroupHidden] = useState(isHidden);
   const inputRef = useRef<HTMLInputElement>(null);
   const iconRef = useRef<HTMLButtonElement>(null);
+  const taskListRef = useRef<HTMLDivElement>(null);
   const accordionRef = useRef<HTMLDivElement>(null);
+  const [isListScrolled, setIsListScrolled] = useState(false);
   useClickOutside(
     inputRef,
     () => {
@@ -43,9 +46,15 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
     }
   }, [isGroupEditable]);
 
+  const handleTaskListOnScroll = (event: UIEvent<HTMLDivElement>) => {
+    setIsListScrolled(!!event.currentTarget.scrollTop);
+  };
+
   return (
-    <div className={styles.TaskGroup}>
-      <div className={styles.taskGroupHeader}>
+    <div className={clsx(styles.TaskGroup, !isGroupHidden && styles.active)}>
+      <div
+        className={clsx(styles.taskGroupHeader, !isGroupHidden && isListScrolled && styles.scrolledList)}
+      >
         <input
           ref={inputRef}
           value={title}
@@ -69,7 +78,12 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
         >
           <BiEdit className={styles.buttonIcon} />
         </IconButton>
-        <IconButton classname={clsx(styles.deleteButton)} onClick={() => deleteTaskGroup(groupId)}>
+        <IconButton
+          classname={clsx(styles.deleteButton)}
+          onClick={() => {
+            deleteTaskGroup(groupId);
+          }}
+        >
           <TiDelete className={styles.buttonIcon} />
         </IconButton>
         <IconButton
@@ -88,7 +102,11 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
         ref={accordionRef}
       >
         <div>
-          <div className={styles.taskList}>
+          <div
+            className={clsx(styles.taskList)}
+            ref={taskListRef}
+            onScroll={handleTaskListOnScroll}
+          >
             {taskList.map((task) => (
               <TaskItem
                 key={task.id}
@@ -99,7 +117,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
               />
             ))}
           </div>
-          <div className={styles.addToDoSection}>
+          <div className={styles.AddToDoSection}>
             <AddToDoSection groupId={groupId} />
           </div>
         </div>

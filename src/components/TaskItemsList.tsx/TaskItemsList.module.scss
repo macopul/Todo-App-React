@@ -5,6 +5,7 @@
 
 .taskList::before {
   content: '';
+  box-shadow: 0 0 4px;
   height: 1px;
   opacity: 0.5;
   background: var(--primary-color-3);
