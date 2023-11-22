@@ -7,7 +7,6 @@ const useClickOutside = function (
 ) {
   const handleClickOutside = useCallback(
     (event: any) => {
-      console.log('handler invoked');
       if (
         ref.current &&
         event.target.dataset.ignoreClickOutside !== ignoreDataSetProperty &&
@@ -22,7 +21,6 @@ const useClickOutside = function (
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      console.log('cleaned-up');
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [handleClickOutside]);

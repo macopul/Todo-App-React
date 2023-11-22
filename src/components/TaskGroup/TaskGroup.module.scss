@@ -4,7 +4,7 @@
 
 .TaskGroup::before {
   display: block;
-  background-color: black;
+  background-color: var(--primary-color-3);
   content: '';
   height: 1px;
   opacity: 0.5;
@@ -34,8 +34,18 @@
   background: transparent;
   border: none;
   outline: none;
-  color: black;
+  color: var(--primary-color-3);
   cursor: auto;
+}
+
+.groupInput:focus {
+  background: var(--grey-white-linear-gradient);
+  outline: none;
+}
+
+.groupInput:read-only {
+  background: transparent;
+  outline: none;
 }
 
 .AddToDoSection {
@@ -133,4 +143,3 @@
   background-color: var(--primary-color-2);
   border-radius: 100vw;
 }
-
