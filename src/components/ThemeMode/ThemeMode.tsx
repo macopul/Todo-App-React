@@ -1,7 +1,7 @@
 import styles from './themeMode.module.scss';
 import { useRef } from 'react';
-import { getIsDarkMode, toggleDarkMode } from '../../../config/themeMode/themeModeStorage';
-import IconButton from '../../IconButton/IconButton';
+import { getIsDarkMode, toggleDarkMode } from '../../config/themeMode/themeModeStorage';
+import IconButton from '../IconButton/IconButton';
 import clsx from 'clsx';
 import { FiSun, FiMoon } from 'react-icons/fi';
 
