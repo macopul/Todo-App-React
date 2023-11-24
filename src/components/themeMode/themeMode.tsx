@@ -1,6 +1,9 @@
-import styles from './themeModeIcon.module.scss';
+import styles from './themeMode.module.scss';
 import { useRef } from 'react';
-import { getIsDarkMode, setDarkMode, removeDarkMode } from '../../themeMode/ThemeMode';
+import {
+  getIsDarkMode,
+  toggleDarkMode,
+} from '../../config/themeMode/themeModeStorage';
 import IconButton from '../IconButton/IconButton';
 import clsx from 'clsx';
 import { FiSun, FiMoon } from 'react-icons/fi';
@@ -16,12 +19,12 @@ const ThemeModeIcon = () => {
     if (document.body.classList.contains('theme-dark')) {
       lightModeIconRef.current?.classList.remove(styles.active);
       darkModeIconRef.current?.classList.add(styles.active);
-      setDarkMode();
+      toggleDarkMode();
       return;
     }
     lightModeIconRef.current?.classList.add(styles.active);
     darkModeIconRef.current?.classList.remove(styles.active);
-    removeDarkMode();
+    toggleDarkMode();
   };
 
   return (

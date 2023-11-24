@@ -2,7 +2,7 @@ import { useTaskStorage } from '../../hooks/useTaskStorage';
 import AddToDoSection from '../AddToDoSection/AddToDoSection';
 import TaskGroupList from '../TaskGroupList/TaskGroupList';
 import TasksItemList from '../TaskItemsList.tsx/TaskItemsList';
-import ThemeModeIcon from '../themeModeIcon/themeModeIcon';
+import ThemeModeIcon from '../themeMode/themeMode';
 import styles from './TodoSection.module.scss';
 
 const TodoSection = () => {
