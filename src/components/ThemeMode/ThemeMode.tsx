@@ -5,7 +5,7 @@ import IconButton from '../IconButton/IconButton';
 import clsx from 'clsx';
 import { FiSun, FiMoon } from 'react-icons/fi';
 
-const ThemeModeIcon = () => {
+const ThemeMode = () => {
   const lightModeIconRef = useRef<HTMLButtonElement>(null);
   const darkModeIconRef = useRef<HTMLButtonElement>(null);
   const isDarkModeFromLocalStorage = getIsDarkMode();
@@ -44,4 +44,4 @@ const ThemeModeIcon = () => {
   );
 };
 
-export default ThemeModeIcon;
+export default ThemeMode;
