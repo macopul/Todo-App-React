@@ -17,7 +17,7 @@
 
   /*** VARIABLES ***/
 
- /* colors */
+  /* colors */
   --primary-color-1: #f9f7f3;
   --primary-color-2: #d1d6dc;
   --primary-color-3: #3d3b30;
@@ -132,4 +132,11 @@ button:focus-visible {
   }
 }
 
+/*breakepoints*/
+$sm: 640px;
 
+@media screen and (max-width: $sm) {
+  body {
+    font-size: 14px;
+  }
+}

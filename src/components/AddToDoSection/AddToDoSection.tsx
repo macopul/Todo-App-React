@@ -55,14 +55,17 @@ const AddToDoSection = ({ groupId }: AddToDoSectionType) => {
         }
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button
-        onClick={() => {
-          handleAddButton('task');
-        }}
-      >
-        Add New Task
-      </button>
-      {!groupId && <button onClick={() => handleAddButton('group')}>Add New Group</button>}
+      <div className={styles.buttonsSection}>
+        <button
+          className={styles.addNewTaskButton}
+          onClick={() => {
+            handleAddButton('task');
+          }}
+        >
+          Add New Task
+        </button>
+        {!groupId && <button onClick={() => handleAddButton('group')}>Add New Group</button>}
+      </div>
     </div>
   );
 };
