@@ -46,14 +46,17 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
     }
   }, [isGroupEditable]);
 
-  const handleTaskListOnScroll = (event: UIEvent<HTMLDivElement>) => {
+  const handleOnTaskListScroll = (event: UIEvent<HTMLDivElement>) => {
     setIsListScrolled(!!event.currentTarget.scrollTop);
   };
 
   return (
     <div className={clsx(styles.TaskGroup, !isGroupHidden && styles.active)}>
       <div
-        className={clsx(styles.taskGroupHeader, !isGroupHidden && isListScrolled && styles.scrolledList)}
+        className={clsx(
+          styles.taskGroupHeader,
+          !isGroupHidden && isListScrolled && styles.scrolledList,
+        )}
       >
         <input
           ref={inputRef}
@@ -79,7 +82,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
           <BiEdit className={styles.buttonIcon} />
         </IconButton>
         <IconButton
-          classname={clsx(styles.deleteButton)}
+          classname={styles.deleteButton}
           onClick={() => {
             deleteTaskGroup(groupId);
           }}
@@ -102,11 +105,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
         ref={accordionRef}
       >
         <div>
-          <div
-            className={clsx(styles.taskList)}
-            ref={taskListRef}
-            onScroll={handleTaskListOnScroll}
-          >
+          <div className={styles.taskList} ref={taskListRef} onScroll={handleOnTaskListScroll}>
             {taskList.map((task) => (
               <TaskItem
                 key={task.id}
