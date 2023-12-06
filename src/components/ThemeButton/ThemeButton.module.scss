@@ -1,0 +1,28 @@
+.ThemeButtonComponent {
+  position: relative;
+  top: -40px;
+  left: 0px;
+}
+
+.themeButton {
+  position: absolute;
+  top: -40px;
+  height: 40px;
+  width: 40px;
+}
+
+.lightThemeButtonIcon {
+  color: var(--primary-color-2);
+  width: 20px;
+  height: 20px;
+}
+
+.darkThemeButtonIcon {
+  color: var(--primary-color-3);
+  width: 20px;
+  height: 20px;
+}
+
+.active {
+  opacity: 0;
+}
