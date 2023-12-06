@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTaskStorage } from '../../hooks/useTaskStorage';
+import clsx from 'clsx';
 import styles from './AddToDoSection.module.scss';
 
 const labels = {
@@ -9,9 +10,10 @@ const labels = {
 
 type AddToDoSectionType = {
   groupId?: string;
+  classname?: string;
 };
 
-const AddToDoSection = ({ groupId }: AddToDoSectionType) => {
+const AddToDoSection = ({ groupId, classname }: AddToDoSectionType) => {
   // now we can use useTaskStorage in any place at any level - cause methods inside are operating on shared context state which is one for all children - look inside TaskStoreContextProvider.tsx and in App.tsx
   const { addTask, addTaskGroup } = useTaskStorage();
   const [title, setTitle] = useState('');
@@ -46,7 +48,7 @@ const AddToDoSection = ({ groupId }: AddToDoSectionType) => {
   };
 
   return (
-    <div className={styles.AddToDoSection}>
+    <div className={clsx(styles.AddToDoSection, classname)}>
       <input
         type="text"
         value={title}

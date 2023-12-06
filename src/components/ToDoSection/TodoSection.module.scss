@@ -25,6 +25,30 @@
 
 @media screen and (max-width: $sm) {
   .TodoSectionComponent {
-    min-width: 350px;
+    min-width: 340px;
+  }
+
+  .mainAddToDoSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      min-height: 28px;
+      min-width: 80%;
+      margin: 4px;
+    }
+
+    > div {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin: 4px 0;
+    }
+
+    button {
+      width: 140px;
+    }
   }
 }

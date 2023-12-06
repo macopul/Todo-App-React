@@ -1,9 +1,11 @@
+@import './../../styles/style.scss';
+
 .TaskItemComponent {
   width: 100%;
   height: fit-content;
   display: flex;
   align-items: center;
-  padding: 5px 10px 5px;
+  padding: 5px;
 }
 
 .editButton {
@@ -43,7 +45,7 @@
 
 .taskInput {
   padding: 0 5px;
-  margin-left: 10px;
+  margin-left: 4px;
   background: transparent;
   border: none;
   outline: none;
@@ -59,4 +61,10 @@
 .taskChecked {
   text-decoration: line-through;
   opacity: 0.5;
+}
+
+@media screen and (max-width: $sm) {
+  .taskInput {
+    max-width: 200px;
+  }
 }
