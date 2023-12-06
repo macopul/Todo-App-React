@@ -17,7 +17,7 @@
 
   /*** VARIABLES ***/
 
- /* colors */
+  /* colors */
   --primary-color-1: #f9f7f3;
   --primary-color-2: #d1d6dc;
   --primary-color-3: #3d3b30;
@@ -38,11 +38,12 @@
   --title-drop-shadow: drop-shadow(0 0 25px rgba(1, 139, 86, 0.62));
 
   /* gradients */
+  --grey-white-linear-gradient: linear-gradient(var(--primary-color-2), var(--secondary-color-2));
   --green-blue-linear-gradient: linear-gradient(45deg, #05ff67, #2965d9);
   --green-purple-linear-gradient: linear-gradient(to left, #2ebf91, #8360c3);
 
   /* checkbox */
-  --todo-checkbox-active: #ff4545;
+  --todo-checkbox-active: #a41515;
 
   /* task counter */
   --todo-task-counter-color: var(--color-light-grey);
@@ -66,12 +67,12 @@
 
 body.theme-dark {
   --primary-color-1: #615f5d;
-  --primary-color-2: #807e80;
+  --primary-color-2: #9d979d;
   --primary-color-3: #cedad2;
-  --primary-color-4: #222530;
+  --primary-color-4: #232631;
   --secondary-color-1: #a41515;
-  --secondary-color-3: #d4cbcb;
   --secondary-color-2: #b6b6b6;
+  --secondary-color-3: #d4cbcb;
   --shadow-color-1: #8c8e91;
 }
 
@@ -100,7 +101,6 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -131,5 +131,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-

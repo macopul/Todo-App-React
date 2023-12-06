@@ -9,14 +9,3 @@
   box-shadow: var(--shadow-color-1);
   border-radius: 25px;
 }
-
-.TodoSection::before {
-  position: absolute;
-  top: 0;
-  margin-top: auto;
-  width: 540px;
-  content: '';
-  background: var(--primary-color-3);
-  height: 50px;
-  clip-path: ellipse(42% 25% at 50% 1%);
-}
