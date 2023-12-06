@@ -3,7 +3,7 @@ import TaskGroupList from '../TaskGroupList/TaskGroupList';
 import TasksItemList from '../TaskItemsList.tsx/TaskItemsList';
 import AddToDoSection from '../AddToDoSection/AddToDoSection';
 import styles from './TodoSection.module.scss';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 
 const TodoSection = () => {
   const { taskList, groups } = useTaskStorage();
@@ -12,7 +12,7 @@ const TodoSection = () => {
     <div className={styles.TodoSectionComponent}>
       <TaskGroupList groupList={groups} />
       <TasksItemList taskList={taskList} />
-      <AddToDoSection classname={clsx(styles.mainAddToDoSection)}/>
+      <AddToDoSection classname={styles.mainAddToDoSection}/>
     </div>
   );
 };
