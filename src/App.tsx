@@ -1,4 +1,4 @@
-import './styles/style.css';
+import './styles/style.scss';
 
 import Layout from './components/Layout/Layout';
 import { TaskStoreProvider } from './context/TastStoreContextProvider';

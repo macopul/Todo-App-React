@@ -1,8 +1,8 @@
 import { useTaskStorage } from '../../hooks/useTaskStorage';
-import AddToDoSection from '../AddToDoSection/AddToDoSection';
 import TaskGroupList from '../TaskGroupList/TaskGroupList';
 import TasksItemList from '../TaskItemsList/TaskItemsList';
 import ThemeButton from '../ThemeButton/ThemeButton';
+import AddToDoSection from '../AddToDoSection/AddToDoSection';
 import styles from './TodoSection.module.scss';
 
 const TodoSection = () => {
@@ -13,7 +13,7 @@ const TodoSection = () => {
       <ThemeButton />
       <TaskGroupList groupList={groups} />
       <TasksItemList taskList={taskList} />
-      <AddToDoSection />
+      <AddToDoSection classname={styles.mainAddToDoSection}/>
     </div>
   );
 };

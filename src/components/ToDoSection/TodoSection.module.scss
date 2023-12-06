@@ -1,6 +1,8 @@
+@import './../../styles/style.scss';
+
 .TodoSectionComponent {
   position: relative;
-  width: 600px;
+  min-width: 600px;
   min-height: 50vh;
   height: fit-content;
   padding: var(--spacing-xl) var(--spacing-l) var(--spacing-xxl);
@@ -8,4 +10,45 @@
   margin: 5rem auto;
   box-shadow: var(--shadow-color-1);
   border-radius: 25px;
+}
+
+.TodoSection::before {
+  position: absolute;
+  top: 0;
+  margin-top: auto;
+  width: 540px;
+  content: '';
+  background: var(--primary-color-3);
+  height: 50px;
+  clip-path: ellipse(42% 25% at 50% 1%);
+}
+
+@media screen and (max-width: $sm) {
+  .TodoSectionComponent {
+    min-width: 340px;
+  }
+
+  .mainAddToDoSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      min-height: 28px;
+      min-width: 80%;
+      margin: 4px;
+    }
+
+    > div {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin: 4px 0;
+    }
+
+    button {
+      width: 140px;
+    }
+  }
 }

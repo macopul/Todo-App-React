@@ -1,18 +1,19 @@
+@import './../../styles/style.scss';
+
 .AddToDoSection {
   display: flex;
   justify-content: space-between;
-  margin-top: 8px;
-  margin-bottom: 4px;
+  margin: 8px 0;
+  font-size: 14px;
 
   button {
-    font-size: 14px;
     width: 140px;
-    padding: 2px 10px;
-    margin: 1px;
+    padding: 6px 10px;
     border: none;
     color: var(--secondary-color-3);
     background-color: var(--primary-color-2);
     outline: none;
+    margin: 0 8px;
   }
 
   input {
@@ -26,5 +27,28 @@
 
   input::placeholder {
     color: var(--primary-color-3);
+  }
+}
+
+@media screen and (max-width: $sm) {
+  .AddToDoSection {
+    font-size: 12px;
+
+    input {
+      // min-width: 120px;
+      max-width: 120px;
+      margin-right: 6px;
+      padding: 0 6px;
+    }
+
+    button {
+      min-width: 120px;
+      padding: 6px;
+      margin: 0 2px;
+    }
+  }
+
+  input::placeholder {
+    font-size: 12px;
   }
 }
