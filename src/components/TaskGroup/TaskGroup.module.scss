@@ -44,7 +44,6 @@
 }
 
 .groupInput:focus {
-  background: var(--grey-white-linear-gradient);
   outline: none;
 }
 
@@ -132,21 +131,6 @@
 .taskList {
   max-height: 170px;
   overflow-y: auto;
-}
-
-.taskList::-webkit-scrollbar {
-  width: 14px;
-}
-
-.taskList::-webkit-scrollbar-track {
-  background-color: var(--secondary-color-2);
-  border-radius: 100vw;
-}
-
-.taskList::-webkit-scrollbar-thumb {
-  border: solid var(--secondary-color-2) 2px;
-  background-color: var(--primary-color-2);
-  border-radius: 100vw;
 }
 
 .taskList::-webkit-scrollbar {
