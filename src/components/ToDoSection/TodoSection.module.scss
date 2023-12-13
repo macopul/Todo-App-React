@@ -1,15 +1,17 @@
 @import './../../styles/style.scss';
 
 .TodoSectionComponent {
-  position: relative;
   min-width: 600px;
   min-height: 50vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 700px;
   height: fit-content;
   padding: var(--spacing-xl) var(--spacing-l) var(--spacing-xxl);
   background: var(--primary-color-1);
-  margin: 5rem auto;
   box-shadow: var(--shadow-color-1);
-  border-radius: 25px;
 }
 
 .TodoSection::before {
@@ -21,6 +23,31 @@
   background: var(--primary-color-3);
   height: 50px;
   clip-path: ellipse(42% 25% at 50% 1%);
+}
+
+.contentContainer{
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+.contentContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.contentContainer::-webkit-scrollbar-track {
+  background-color: var(--secondary-color-2) ;
+  border-radius: 100vw;
+}
+
+.contentContainer::-webkit-scrollbar-thumb {
+  border: solid var(--secondary-color-2) 2px;
+  background-color: var(--primary-color-2);
+  border-radius: 100vw;
+}
+
+.mainAddToDoSection {
+  padding-top: 10px;
+  margin-top: auto;
 }
 
 @media screen and (max-width: $sm) {

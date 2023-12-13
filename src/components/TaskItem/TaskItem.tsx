@@ -13,9 +13,14 @@ const TaskItem = ({ title, checked, id, groupId }: TaskItemType) => {
   const [taskTitle, setTaskTitle] = useState(title);
   const [isTaskChecked, setIsTaskChecked] = useState(checked);
   const [isTaskEditable, setIsTaskEditbale] = useState(false);
+  const taskRef = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLInputElement>(null);
   useClickOutside(ref, () => setIsTaskEditbale(false), `ignoreClickOutside${id}`);
   const { updateTask, deleteTask } = useTaskStorage();
+
+  useEffect(() => {
+    taskRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, []);
 
   useEffect(() => {
     if (!isTaskEditable) {
@@ -30,7 +35,7 @@ const TaskItem = ({ title, checked, id, groupId }: TaskItemType) => {
   }, [isTaskEditable]);
 
   return (
-    <div className={styles.TaskItemComponent}>
+    <div className={styles.TaskItemComponent} ref={taskRef}>
       <Checkbox checked={isTaskChecked} onChange={() => setIsTaskChecked(!isTaskChecked)} />
       <input
         ref={ref}

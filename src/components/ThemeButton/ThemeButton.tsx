@@ -29,14 +29,14 @@ const ThemeButton = () => {
       <IconButton
         ref={lightThemeButtonRef}
         onClick={handleOnButtonClick}
-        classname={clsx(styles.themeButton, !isDarkThemeFromLocalStorage && styles.active)}
+        classname={clsx(styles.lightThemeButton, !isDarkThemeFromLocalStorage && styles.active)}
       >
         <FiSun className={styles.lightThemeButtonIcon} />
       </IconButton>
       <IconButton
         ref={darkThemeButtonRef}
         onClick={handleOnButtonClick}
-        classname={clsx(styles.themeButton, isDarkThemeFromLocalStorage && styles.active)}
+        classname={clsx(styles.darkThemeButton, isDarkThemeFromLocalStorage && styles.active)}
       >
         <FiMoon className={styles.darkThemeButtonIcon} />
       </IconButton>
