@@ -6,7 +6,7 @@
   padding-right: 10px;
 }
 
-.TaskGroup::before {
+.TaskGroup::before, .TaskGroup::after {
   display: block;
   background-color: var(--primary-color-3);
   content: '';
@@ -16,7 +16,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.TaskGroup.active::before {
+.TaskGroup.active::before, .TaskGroup.active::after {
   transform: scale(1);
 }
 
