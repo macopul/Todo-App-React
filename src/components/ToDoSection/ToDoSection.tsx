@@ -11,7 +11,7 @@ const TodoSection = () => {
   return (
     <div className={styles.TodoSectionComponent}>
       <ThemeButton />
-      <div className={styles.contentContainer}>
+      <div className={styles.tasksContentContainer}>
         <TaskGroupList groupList={groups} />
         <TasksItemList taskList={taskList} />
       </div>

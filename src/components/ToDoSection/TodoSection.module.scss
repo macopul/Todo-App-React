@@ -25,21 +25,21 @@
   clip-path: ellipse(42% 25% at 50% 1%);
 }
 
-.contentContainer{
+.tasksContentContainer{
   overflow: auto;
   margin-bottom: 10px;
 }
 
-.contentContainer::-webkit-scrollbar {
+.tasksContentContainer::-webkit-scrollbar {
   width: 8px;
 }
 
-.contentContainer::-webkit-scrollbar-track {
+.tasksContentContainer::-webkit-scrollbar-track {
   background-color: var(--secondary-color-2) ;
   border-radius: 100vw;
 }
 
-.contentContainer::-webkit-scrollbar-thumb {
+.tasksContentContainer::-webkit-scrollbar-thumb {
   border: solid var(--secondary-color-2) 2px;
   background-color: var(--primary-color-2);
   border-radius: 100vw;
