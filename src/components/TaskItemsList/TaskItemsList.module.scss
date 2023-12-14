@@ -2,7 +2,7 @@
   margin-top: 10px;
 }
 
-.taskList::before {
+.taskList:has(div)::before {
   content: '';
   box-shadow: 0 0 6px ;
   height: 0.5px;

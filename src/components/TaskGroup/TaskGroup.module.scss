@@ -25,7 +25,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 5px 5px 0;
+  margin: 10px 5px 0;
+  padding-bottom: 5px;
 }
 
 .scrolledList {
@@ -149,8 +150,21 @@
 }
 
 @media screen and (max-width: $sm) {
+  .TaskGroup{
+    padding-right: 0;
+  }
+  
   .groupInput {
     font-size: 16px;
     max-width: 170px;
   }
+
+  .scrolledList {
+    box-shadow: 0px 10px 10px -10px var(--primary-color-2);
+  }
+  
+  .taskList::-webkit-scrollbar {
+    display: none;
+  }
+  
 }
