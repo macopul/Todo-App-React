@@ -125,7 +125,11 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
               />
             ))}
           </div>
-          <AddToDoSection groupId={groupId} classname={styles.taskGroupAddToDoSection} />
+          <AddToDoSection
+            groupId={groupId}
+            classname={styles.taskGroupAddToDoSection}
+            buttonSectionClassname={styles.taskGroupButtonSection}
+          />
         </div>
       </div>
     </div>

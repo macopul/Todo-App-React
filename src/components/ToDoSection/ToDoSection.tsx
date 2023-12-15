@@ -15,7 +15,10 @@ const TodoSection = () => {
         <TaskGroupList groupList={groups} />
         <TasksItemList taskList={taskList} />
       </div>
-      <AddToDoSection classname={styles.mainAddToDoSection} />
+      <AddToDoSection
+        classname={styles.mainAddToDoSection}
+        buttonSectionClassname={styles.mainAddToDoSectionButtonSection}
+      />
     </div>
   );
 };
