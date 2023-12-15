@@ -36,7 +36,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
 
   useEffect(() => {
     groupRef.current?.scrollIntoView({ behavior: 'smooth' });
-  },[]);
+  }, []);
 
   useEffect(() => {
     setTaskCount(taskQuantity);
@@ -56,7 +56,11 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
   };
 
   return (
-    <div className={clsx(styles.TaskGroup, !isGroupHidden && styles.active)} ref={groupRef}>
+    <div
+      className={clsx(styles.TaskGroup, !isGroupHidden && styles.active)}
+      ref={groupRef}
+      data-active={!isGroupHidden}
+    >
       <div
         className={clsx(
           styles.taskGroupHeader,
@@ -121,9 +125,7 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
               />
             ))}
           </div>
-          <div className={styles.AddToDoSection}>
-            <AddToDoSection groupId={groupId} />
-          </div>
+          <AddToDoSection groupId={groupId} classname={styles.taskGroupAddToDoSection} />
         </div>
       </div>
     </div>
