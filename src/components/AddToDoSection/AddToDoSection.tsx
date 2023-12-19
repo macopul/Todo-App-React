@@ -11,7 +11,7 @@ const labels = {
 type AddToDoSectionType = {
   groupId?: string;
   classname?: string;
-  buttonSectionClassname?: string
+  buttonSectionClassname?: string;
 };
 
 const AddToDoSection = ({ groupId, classname, buttonSectionClassname }: AddToDoSectionType) => {
@@ -20,7 +20,7 @@ const AddToDoSection = ({ groupId, classname, buttonSectionClassname }: AddToDoS
   const [title, setTitle] = useState('');
 
   const handleAddButton = (action: string) => {
-    if (title.trim() === '') {
+    if (!title.trim()) {
       window.alert('The task or group can not be empty');
       return;
     }

@@ -25,21 +25,23 @@ const ThemeButton = () => {
   };
 
   return (
-    <div className={styles.ThemeButtonComponent}>
-      <IconButton
-        ref={lightThemeButtonRef}
-        onClick={handleOnButtonClick}
-        classname={clsx(styles.lightThemeButton, !isDarkThemeFromLocalStorage && styles.active)}
-      >
-        <FiSun className={styles.lightThemeButtonIcon} />
-      </IconButton>
-      <IconButton
-        ref={darkThemeButtonRef}
-        onClick={handleOnButtonClick}
-        classname={clsx(styles.darkThemeButton, isDarkThemeFromLocalStorage && styles.active)}
-      >
-        <FiMoon className={styles.darkThemeButtonIcon} />
-      </IconButton>
+    <div className={styles.themeButtonWrapper}>
+      <div className={styles.ThemeButtonComponent}>
+        <IconButton
+          ref={lightThemeButtonRef}
+          onClick={handleOnButtonClick}
+          classname={clsx(styles.lightThemeButton, !isDarkThemeFromLocalStorage && styles.active)}
+        >
+          <FiSun className={styles.lightThemeButtonIcon} />
+        </IconButton>
+        <IconButton
+          ref={darkThemeButtonRef}
+          onClick={handleOnButtonClick}
+          classname={clsx(styles.darkThemeButton, isDarkThemeFromLocalStorage && styles.active)}
+        >
+          <FiMoon className={styles.darkThemeButtonIcon} />
+        </IconButton>
+      </div>
     </div>
   );
 };

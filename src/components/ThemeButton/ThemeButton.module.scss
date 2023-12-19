@@ -1,5 +1,9 @@
 @import './../../styles/style.scss';
 
+.themeButtonWrapper  {
+  position: sticky
+}
+
 .ThemeButtonComponent {
   position: relative;
   min-height: 30px;
