@@ -1,4 +1,4 @@
-import styles from './themeButton.module.scss';
+import styles from './ThemeButton.module.scss';
 import { useRef } from 'react';
 import { isDarkTheme, toggleDarkTheme } from '../../config/theme/themeStorage';
 import IconButton from '../IconButton/IconButton';
