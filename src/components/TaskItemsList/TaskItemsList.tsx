@@ -8,7 +8,7 @@ type TasksItemListType = {
 
 const TasksItemList = ({ taskList }: TasksItemListType) => {
   return (
-    <div className={styles.taskList}>
+    <div className={styles.taskList} data-active='true'>
       {taskList.map((task) => (
         <TaskItem key={task.id} title={task.title} checked={task.checked} id={task.id} />
       ))}

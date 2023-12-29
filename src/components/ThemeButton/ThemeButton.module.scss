@@ -1,12 +1,24 @@
-.ThemeButtonComponent {
-  position: relative;
-  top: -40px;
-  left: 0px;
+@import './../../styles/style.scss';
+
+.themeButtonWrapper  {
+  position: sticky
 }
 
-.themeButton {
+.ThemeButtonComponent {
+  position: relative;
+  min-height: 30px;
+}
+
+.lightThemeButton {
   position: absolute;
-  top: -40px;
+  top: -20px;
+  height: 40px;
+  width: 40px;
+}
+
+.darkThemeButton {
+  position: absolute;
+  top: -20px;
   height: 40px;
   width: 40px;
 }
@@ -25,4 +37,10 @@
 
 .active {
   opacity: 0;
+}
+
+@media screen and (max-width: $sm) {
+  .ThemeButtonComponent {
+    box-shadow: 0px 10px 10px -12px var(--primary-color-2);
+  }
 }

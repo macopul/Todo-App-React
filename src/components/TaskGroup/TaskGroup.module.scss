@@ -3,9 +3,11 @@
 .TaskGroup {
   background: transparent;
   width: 100%;
+  padding-right: 10px;
 }
 
-.TaskGroup::before {
+.TaskGroup::before,
+.TaskGroup::after {
   display: block;
   background-color: var(--primary-color-3);
   content: '';
@@ -15,20 +17,25 @@
   transition: all 0.3s ease-in-out;
 }
 
-.TaskGroup.active::before {
-  transform: scale(1);
+.TaskGroup:has(+ [data-active='true'])::after {
+  display: none;
 }
 
+.TaskGroup.active::before,
+.TaskGroup.active::after {
+  transform: scale(1);
+}
 
 .taskGroupHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 5px 5px 0;
+  margin: 10px 5px 0;
+  padding-bottom: 5px;
 }
 
 .scrolledList {
-  box-shadow: 0px 10px 10px -15px grey;
+  box-shadow: 0px 10px 10px -12px var(--primary-color-2);
 }
 
 .groupInput {
@@ -40,11 +47,9 @@
   outline: none;
   color: var(--primary-color-3);
   cursor: auto;
-  max-width: 180px;
 }
 
 .groupInput:focus {
-  background: var(--grey-white-linear-gradient);
   outline: none;
 }
 
@@ -135,22 +140,7 @@
 }
 
 .taskList::-webkit-scrollbar {
-  width: 14px;
-}
-
-.taskList::-webkit-scrollbar-track {
-  background-color: var(--secondary-color-2);
-  border-radius: 100vw;
-}
-
-.taskList::-webkit-scrollbar-thumb {
-  border: solid var(--secondary-color-2) 2px;
-  background-color: var(--primary-color-2);
-  border-radius: 100vw;
-}
-
-.taskList::-webkit-scrollbar {
-  width: 14px;
+  width: 10px;
 }
 
 .taskList::-webkit-scrollbar-track {
@@ -165,7 +155,33 @@
 }
 
 @media screen and (max-width: $sm) {
+  .TaskGroup {
+    padding-right: 0;
+  }
+
   .groupInput {
     font-size: 16px;
+    max-width: 170px;
+  }
+
+  .scrolledList {
+    box-shadow: 0px 10px 10px -10px var(--primary-color-2);
+  }
+
+  .taskList::-webkit-scrollbar {
+    display: none;
+  }
+
+  .taskGroupAddToDoSection {
+    gap: 15px;
+
+    input {
+      width: 100%;
+    }
+
+    button {
+      margin: 0;
+      max-width: 120px;
+    }
   }
 }

@@ -11,16 +11,17 @@ const labels = {
 type AddToDoSectionType = {
   groupId?: string;
   classname?: string;
+  buttonSectionClassname?: string;
 };
 
-const AddToDoSection = ({ groupId, classname }: AddToDoSectionType) => {
+const AddToDoSection = ({ groupId, classname, buttonSectionClassname }: AddToDoSectionType) => {
   // now we can use useTaskStorage in any place at any level - cause methods inside are operating on shared context state which is one for all children - look inside TaskStoreContextProvider.tsx and in App.tsx
   const { addTask, addTaskGroup } = useTaskStorage();
   const [title, setTitle] = useState('');
 
   const handleAddButton = (action: string) => {
-    if (!title) {
-      window.alert('The task can not be empty');
+    if (!title.trim()) {
+      window.alert('The task or group can not be empty');
       return;
     }
     switch (action) {
@@ -57,7 +58,7 @@ const AddToDoSection = ({ groupId, classname }: AddToDoSectionType) => {
         }
         onChange={(e) => setTitle(e.target.value)}
       />
-      <div className={styles.buttonsSection}>
+      <div className={clsx(styles.buttonSection, buttonSectionClassname)}>
         <button
           className={styles.addNewTaskButton}
           onClick={() => {

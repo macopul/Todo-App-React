@@ -16,6 +16,7 @@ import { UIEvent } from 'react';
 const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupType) => {
   const [isGroupEditable, setIsGroupEditbale] = useState(false);
   const [isGroupHidden, setIsGroupHidden] = useState(isHidden);
+  const groupRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const iconRef = useRef<HTMLButtonElement>(null);
   const taskListRef = useRef<HTMLDivElement>(null);
@@ -32,6 +33,10 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
   const [title, setTitle] = useState(groupTitle);
   const taskQuantity = groups.find((group) => group.groupId === groupId)!.taskList.length;
   const [taskCount, setTaskCount] = useState(taskQuantity);
+
+  useEffect(() => {
+    groupRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
   useEffect(() => {
     setTaskCount(taskQuantity);
@@ -51,7 +56,11 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
   };
 
   return (
-    <div className={clsx(styles.TaskGroup, !isGroupHidden && styles.active)}>
+    <div
+      className={clsx(styles.TaskGroup, !isGroupHidden && styles.active)}
+      ref={groupRef}
+      data-active={!isGroupHidden}
+    >
       <div
         className={clsx(
           styles.taskGroupHeader,
@@ -116,9 +125,11 @@ const TaskGroup = ({ taskList, groupTitle, groupId, isHidden }: TaskItemGroupTyp
               />
             ))}
           </div>
-          <div className={styles.AddToDoSection}>
-            <AddToDoSection groupId={groupId} />
-          </div>
+          <AddToDoSection
+            groupId={groupId}
+            classname={styles.taskGroupAddToDoSection}
+            buttonSectionClassname={styles.taskGroupButtonSection}
+          />
         </div>
       </div>
     </div>

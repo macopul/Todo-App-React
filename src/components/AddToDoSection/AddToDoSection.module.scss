@@ -32,23 +32,10 @@
 
 @media screen and (max-width: $sm) {
   .AddToDoSection {
-    font-size: 12px;
+    font-size: 13px;
 
     input {
-      // min-width: 120px;
-      max-width: 120px;
-      margin-right: 6px;
-      padding: 0 6px;
+      font-size: 16px;
     }
-
-    button {
-      min-width: 120px;
-      padding: 6px;
-      margin: 0 2px;
-    }
-  }
-
-  input::placeholder {
-    font-size: 12px;
   }
 }
